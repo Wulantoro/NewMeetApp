@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="200dp">
+
+    <LinearLayout
+        android:id="@+id/LnHeader"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/green_100"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Perhatian!"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvA"
+        android:layout_below="@+id/LnHeader"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apakah anda yakin dengan Email : "
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_below="@+id/tvA"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MeetAp@gmail.com "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+
+    <RelativeLayout
+        android:layout_below="@id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/tvTrue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Benar"
+            android:textColor="@color/green_500"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/tvFalse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Salah"
+            android:textColor="@color/red_600"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

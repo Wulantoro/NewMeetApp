@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/beranda"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/navigation_ask"
+        android:icon="@drawable/question"
+        android:title="Ask" />
+
+    <item
+        android:id="@+id/navigation_profil"
+        android:icon="@drawable/ic_person"
+        android:title="Profil" />
+</menu>
