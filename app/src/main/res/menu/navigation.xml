@@ -11,6 +11,11 @@
         android:title="Ask" />
 
     <item
+        android:id="@+id/navigation_member"
+        android:icon="@drawable/meepapabu"
+        android:title="Member" />
+
+    <item
         android:id="@+id/navigation_profil"
         android:icon="@drawable/ic_person"
         android:title="Profil" />

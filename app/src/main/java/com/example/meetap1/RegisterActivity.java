@@ -2,9 +2,9 @@ package com.example.meetap1;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ButtonBarLayout;
+import androidx.appcompat.widget.ButtonBarLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class RegisterActivity extends AppCompatActivity {
     Dialog dialogEmail;
     private EditText etEmail;
+    private TextView tvMasuk;
     private Button btnRegister;
 
     @Override
@@ -21,13 +22,21 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         dialogEmail = new Dialog(RegisterActivity.this);
 
-        btnRegister = findViewById(R.id.btnREGISTER);
-        etEmail = findViewById(R.id.etEmailKonfirm);
+        btnRegister = findViewById(R.id.btnRegister);
+        tvMasuk = findViewById(R.id.tvMasuk);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopUp();
+            }
+        });
+
+        tvMasuk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent go = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(go);
             }
         });
     }
@@ -36,15 +45,16 @@ public class RegisterActivity extends AppCompatActivity {
         TextView tvTrue, tvFalse;
 
         dialogEmail.setContentView(R.layout.popupregis);
+        dialogEmail.setCancelable(false);
 
-        tvTrue = dialogEmail.findViewById(R.id.tvTrue);
-        tvFalse = dialogEmail.findViewById(R.id.tvFalse);
+        tvTrue = dialogEmail.findViewById(R.id.tvBenar);
+        tvFalse = dialogEmail.findViewById(R.id.tvSalah);
 
         tvFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialogEmail.dismiss();
-                etEmail.requestFocus();
+                //etEmail.requestFocus();
 
             }
         });
@@ -52,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         tvTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent go = new Intent(RegisterActivity.this, PassRandomActivity.class);
+                Intent go = new Intent(RegisterActivity.this, CheckEmailActivity.class);
                 startActivity(go);
             }
         });

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,194 +7,157 @@
     tools:context=".LoginActivity">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/rvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10mdp"
+        android:layout_centerVertical="true">
 
-    <ImageView
-        android:id="@+id/ImgLogo"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/logomeetap" />
+        <ImageView
+            android:id="@+id/imgMeetAp"
+            android:layout_width="@dimen/_90mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/meetap" />
 
-    <ImageView
-        android:id="@+id/imgTxt"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/ImgLogo"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/meetap" />
+        <RelativeLayout
+            android:id="@+id/rvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp"
+            android:layout_below="@id/imgMeetAp"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_30mdp"
+            android:background="@drawable/border">
 
-            <RelativeLayout
-                android:id="@+id/RvLogin"
+            <EditText
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:layout_below="@id/imgTxt"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/border">
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:layout_marginLeft="@dimen/_5mdp"
+                android:background="@null"
+                android:hint="Email" />
 
-                <LinearLayout
-                    android:id="@+id/LnEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="30dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="Email"
-                        android:textSize="14dp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@drawable/border">
-
-                        <ImageView
-                            android:id="@+id/imgPerson"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginHorizontal="10dp"
-                            android:background="@drawable/ic_email" />
-
-                        <View
-                            android:id="@+id/viewLine"
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="5dp"
-                            android:layout_toRightOf="@id/imgPerson"
-                            android:background="@color/grey_400" />
-
-                        <EditText
-                            android:id="@+id/etEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_toRightOf="@id/viewLine"
-                            android:background="@null"
-                            android:backgroundTint="@color/grey_400"
-                            android:hint="Email" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LnPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/LnEmail"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvPass"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="Password"
-                        android:textSize="14dp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@drawable/border">
-
-                        <ImageView
-                            android:id="@+id/imgPass"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginHorizontal="10dp"
-                            android:background="@drawable/ic_lock" />
-
-                        <View
-                            android:id="@+id/viewLine2"
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="5dp"
-                            android:layout_toRightOf="@id/imgPass"
-                            android:background="@color/grey_400" />
-
-                        <EditText
-                            android:id="@+id/etPassword"
-                            android:layout_width="220dp"
-                            android:layout_height="match_parent"
-                            android:layout_toRightOf="@id/viewLine2"
-                            android:background="@null"
-                            android:backgroundTint="@color/grey_400"
-                            android:hint="Password"
-                            android:inputType="textPassword" />
-
-                        <ImageView
-                            android:id="@+id/ShowPass"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_centerVertical="true"
-                            android:layout_toRightOf="@id/etPassword"
-                            android:src="@drawable/ic_eyes_pass" />
+        </RelativeLayout>
 
 
-                    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rvPass"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp"
+            android:layout_below="@id/rvEmail"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_18mdp"
+            android:background="@drawable/border">
 
-                </LinearLayout>
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="@dimen/_200mdp"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:layout_marginLeft="@dimen/_5mdp"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:hint="Password" />
 
-                <Button
-                    android:id="@+id/btnLOGIN"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/btnbig"
-                    android:text="Login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="20dp" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tvLupaPass"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imgEye"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/RvLogin"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="Lupa password?"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_5mdp"
+                android:background="@drawable/ic_eyes_pass" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvLupaPass"
-                android:paddingBottom="20dp"
-                android:gravity="center_horizontal">
+        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Belum Punya Akun?"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
+        <RelativeLayout
+            android:id="@+id/rlRed2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp"
+            android:layout_below="@id/rvEmail"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_18mdp"
+            android:background="@drawable/borderred">
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tvRegister"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="5dp"
-                    android:text="Daftar"
-                    android:textColor="@color/greenMeetAp"
-                    android:textSize="18dp" />
-            </LinearLayout>
+        <TextView
+            android:id="@+id/tvPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rvPass"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_3mdp"
+            android:layout_marginRight="@dimen/_15mdp"
+            android:text="Lupa Password?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10font_mdp" />
+
+        <TextView
+            android:id="@+id/tvErrorPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rvPass"
+            android:layout_marginTop="@dimen/_3mdp"
+            android:layout_marginLeft="@dimen/_15mdp"
+            android:text="Cek Password"
+            android:textColor="@color/red_600"
+            android:textSize="@dimen/_10font_mdp" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp"
+            android:layout_below="@id/rvPass"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_30mdp"
+            android:background="@drawable/btnbig"
+            android:text="Masuk"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
-</android.support.v4.widget.NestedScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1mdp"
+            android:layout_marginHorizontal="@dimen/_5mdp"
+            android:background="@color/grey_500" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/_10mdp">
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum Punya Akun?"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/tvDaftar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_2mdp"
+            android:layout_toRightOf="@id/tv2"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold"
+            android:textColor="@color/greenMeetAp"
+            android:text="Daftar" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

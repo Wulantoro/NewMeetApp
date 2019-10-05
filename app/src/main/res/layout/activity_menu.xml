@@ -7,28 +7,15 @@
     tools:context=".MenuActivity">
 
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_margin="10dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/ic_search"/>
-
-
-        </RelativeLayout>
-
     </FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/botNav"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_40mdp"
         android:background="@color/white"
         app:labelVisibilityMode="labeled"
         app:itemIconTint="@drawable/statelist"
@@ -36,7 +23,7 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation">
 
-    </android.support.design.widget.BottomNavigationView>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </RelativeLayout>

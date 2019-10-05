@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/riTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45mdp"
+        android:background="@color/greenMeetAp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#ASK"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20font_mdp"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/_5mdp"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiTitle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/riTitle"
+        android:layout_marginHorizontal="@dimen/_10mdp"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:hint="Question title"
+        app:boxStrokeColor="@color/greenMeetAp"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiBody"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tiTitle"
+        android:layout_marginHorizontal="@dimen/_10mdp"
+        app:boxStrokeColor="@color/greenMeetAp"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100mdp"
+            android:hint="Question Body"
+            android:gravity="top" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tiBody"
+        android:layout_marginHorizontal="@dimen/_10mdp"
+        android:hint="Tag"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:id="@+id/RiAddPhoto"
+        android:layout_below="@id/tags"
+        android:layout_marginHorizontal="@dimen/_12mdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordertrans">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add picture"
+            android:layout_marginHorizontal="@dimen/_5mdp"
+            android:layout_marginBottom="@dimen/_10mdp"
+            android:textSize="@dimen/_13font_mdp"/>
+
+        <ImageView
+            android:id="@+id/addCamera"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_5mdp"
+            android:layout_below="@id/tv1"
+            android:background="@drawable/ic_add_a_photo"/>
+
+        <ImageView
+            android:id="@+id/addGallery"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:layout_below="@id/tv1"
+            android:layout_toLeftOf="@id/addCamera"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:background="@drawable/ic_gallery"/>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnPublish"
+        android:layout_below="@id/RiAddPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40mdp"
+        android:layout_marginHorizontal="@dimen/_10mdp"
+        android:layout_marginTop="@dimen/_30mdp"
+        android:background="@drawable/btnbig"
+        android:text="Publish"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14font_mdp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
