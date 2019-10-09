@@ -11,6 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class ChangePassActivity extends AppCompatActivity {
 
@@ -75,6 +85,7 @@ public class ChangePassActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent go = new Intent(ChangePassActivity.this, ProfilActivity.class);
+                ChangePass();
                 startActivity(go);
             }
         });
@@ -99,4 +110,44 @@ public class ChangePassActivity extends AppCompatActivity {
         //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popPass.show();
     }
+
+    public void ChangePass() {
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            JSONArray newArr = new JSONArray();
+            jsonObject.put("passwordBaru", NewPass.getText().toString());
+            jsonObject.put("passwordKonf", ConPass.getText().toString());
+
+            newArr.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.post("http://ask.meetap.id/api/profile/updatePassword")
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String message = response.getString("message");
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "JSONExceptions"+ e, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(), "Gagal ubah password", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+    }
+
+
 }

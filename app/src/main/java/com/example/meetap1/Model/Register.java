@@ -9,6 +9,10 @@ public class Register implements Parcelable
 {
 
     private String email;
+    private String password;
+    private String passwordBaru;
+    private String passwordKonf;
+
 
     public final static Parcelable.Creator<Register> CREATOR = new Creator<Register>() {
 
@@ -29,6 +33,9 @@ public class Register implements Parcelable
 
     protected Register(Parcel in) {
         this.email = ((String) in.readValue((String.class.getClassLoader())));
+        this.password = ((String) in.readValue((String.class.getClassLoader())));
+        this.passwordBaru = ((String) in.readValue((String.class.getClassLoader())));
+        this.passwordKonf = ((String) in.readValue((String.class.getClassLoader())));
 
     }
 
@@ -43,10 +50,37 @@ public class Register implements Parcelable
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordBaru() {
+        return passwordBaru;
+    }
+
+    public void setPasswordBaru(String passwordBaru) {
+        this.passwordBaru = passwordBaru;
+    }
+
+    public String getPasswordKonf() {
+        return passwordKonf;
+    }
+
+    public void setPasswordKonf(String passwordKonf) {
+        this.passwordKonf = passwordKonf;
+    }
+
 
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(email);
+        dest.writeValue(password);
+        dest.writeValue(passwordBaru);
+        dest.writeValue(passwordKonf);
 
     }
 

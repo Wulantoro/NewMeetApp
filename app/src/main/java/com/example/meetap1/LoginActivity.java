@@ -13,11 +13,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     private RelativeLayout rl2;
     private TextView TvDaftar;
-    private EditText etPass;
+    private EditText etPass, etEmail;
     private TextView tvDaftar, tvPassError;
     private Button btnLogin;
     private ImageView eye;
@@ -40,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         eye = findViewById(R.id.imgEye);
 
         etPass = findViewById(R.id.etPassword);
+        etEmail = findViewById(R.id.etEmail);
 
         btnLogin = findViewById(R.id.btnLogin);
 
@@ -80,7 +90,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Validasi
-                validasiLogin();
+//                validasiLogin();
+                login();
 
             }
         });
@@ -118,6 +129,50 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mCobalagi.show();
+    }
+
+    private void login() {
+        final JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("email", etEmail.getText().toString());
+            jsonObject.put("password", etPass.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.post("http://ask.meetap.id/api/auth/login/")
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String message = response.getString("message");
+                            String status = response.getString("status");
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                            if (status.equals("success")) {
+                                Intent go = new Intent(LoginActivity.this, PasswordTrueActivity.class);
+                                startActivity(go);
+
+                            } else {
+                                showPopUp();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(), "Gagal Login", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
     }
 
 //    public void ShowHidePass(View view) {
