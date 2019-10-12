@@ -14,37 +14,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckEmailActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait"></activity>
+        <activity android:name=".DetailActivity"></activity>
+        <activity
+            android:name=".CheckEmailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".PasswordTrueActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".MenuActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".ProfilActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".ChangePassActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

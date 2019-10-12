@@ -6,23 +6,51 @@
     android:layout_height="match_parent"
     tools:context="BerandaFragment">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:text="Home"-->
-<!--        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />-->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTicketList"
-        android:padding="10dp"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-</RelativeLayout>
+    <FrameLayout
+        android:id="@+id/FlToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Problem"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12font_mdp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </FrameLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--    <TextView-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_centerHorizontal="true"-->
+        <!--        android:layout_centerVertical="true"-->
+        <!--        android:text="Home"-->
+        <!--        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTicketList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 </FrameLayout>

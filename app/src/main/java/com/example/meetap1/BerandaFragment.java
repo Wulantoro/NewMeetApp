@@ -1,8 +1,6 @@
 package com.example.meetap1;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +30,6 @@ public class BerandaFragment extends Fragment {
     private TicketAdapter ticketAdapter;
     private Gson gson;
     private List<Ticket> allList;
-    private String Image;
-
-    private static String TAG = BerandaFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -47,27 +42,23 @@ public class BerandaFragment extends Fragment {
         ticketAdapter = new TicketAdapter(getActivity());
         rv.setAdapter(ticketAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        rv.setAdapter(ticketAdapter);
-
         loadTicket();
+        rv.setAdapter(ticketAdapter);
 
         return rootView;
     }
 
     public void loadTicket() {
-
-
         if (ticketAdapter != null)
             ticketAdapter.clerAll();
 
-        AndroidNetworking.post("http://ask.meetap.id/api/ticket/tampilTicket")
+        AndroidNetworking.get("http://ask.meetap.id/api/ticket/tampilTicket")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         List<Ticket> result = new ArrayList<>();
-
                         try {
                             if (result != null)
                                 result.clear();
@@ -79,15 +70,9 @@ public class BerandaFragment extends Fragment {
 
                                 JSONArray dataArr = new JSONArray(records);
 
-                                //Log.e(TAG,"dataArr "+dataArr.toString(1));
-                                //Log.e("datarr","dataArr "+dataArr.toString(1));
-
                                 if (dataArr.length() > 0) {
                                     for (int i = 0; i < dataArr.length(); i++) {
                                         Ticket ticket = gson.fromJson(dataArr.getJSONObject(i).toString(), Ticket.class);
-
-                                        Log.e(TAG, "dataArr" + ticket.getTitle());
-
                                         result.add(ticket);
 
                                     }
