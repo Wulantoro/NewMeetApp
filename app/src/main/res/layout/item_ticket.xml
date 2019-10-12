@@ -40,7 +40,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/tvProblem"
+        android:id="@+id/rvProblem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/RvUser">
@@ -89,7 +89,7 @@
         android:layout_marginTop="@dimen/_10mdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40mdp"
-        android:layout_below="@id/tvProblem">
+        android:layout_below="@id/rvProblem">
 
         <ImageView
             android:id="@+id/imgComent"

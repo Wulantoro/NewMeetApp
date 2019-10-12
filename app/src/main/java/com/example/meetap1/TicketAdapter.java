@@ -1,6 +1,7 @@
 package com.example.meetap1;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,13 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     private Context context;
     private List<Ticket> list;
+    private static String TAG = TicketAdapter.class.getSimpleName();
 
     public TicketAdapter(Context context) {
         this.context = context;
         list = new ArrayList<>();
     }
 
-    public TicketAdapter(BerandaFragment berandaFragment) {
-        list = new ArrayList<>();
-    }
 
     @NonNull
     @Override
@@ -41,7 +40,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Ticket ticket = list.get(holder.getAdapterPosition());
 
-        holder.tvProblem.setText(ticket.getContent());
+        Log.e(TAG, "dataArr" + ticket.getContent());
+
+        holder.tvTitleQuest.setText(ticket.getTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public void add(Ticket r) {
@@ -102,12 +103,12 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvProblem;
+        public TextView tvTitleQuest;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvProblem = itemView.findViewById(R.id.tvProblem);
+            tvTitleQuest = itemView.findViewById(R.id.tvTitleQuest);
         }
     }
 }

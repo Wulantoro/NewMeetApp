@@ -24,7 +24,7 @@
     </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiTitle"
+        android:id="@+id/tiTitle1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,22 +36,24 @@
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40mdp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiBody"
+        android:id="@+id/tiBody1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tiTitle"
+        android:layout_below="@id/tiTitle1"
         android:layout_marginHorizontal="@dimen/_10mdp"
         app:boxStrokeColor="@color/greenMeetAp"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiBody"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100mdp"
             android:hint="Question Body"
@@ -60,15 +62,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tags"
+        android:id="@+id/tags1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tiBody"
+        android:layout_below="@id/tiBody1"
         android:layout_marginHorizontal="@dimen/_10mdp"
         android:hint="Tag"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -76,7 +79,7 @@
 
     <RelativeLayout
         android:id="@+id/RiAddPhoto"
-        android:layout_below="@id/tags"
+        android:layout_below="@id/tags1"
         android:layout_marginHorizontal="@dimen/_12mdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -125,6 +128,13 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_14font_mdp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tviduser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnPublish"
+        android:text="id user"/>
 
 
 </RelativeLayout>

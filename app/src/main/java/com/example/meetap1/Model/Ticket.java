@@ -3,6 +3,9 @@ package com.example.meetap1.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ticket implements Parcelable
 {
 
@@ -11,7 +14,8 @@ public class Ticket implements Parcelable
     private String title;
     private String content;
     private String category_id;
-    private String images;
+//    private String images;
+    private List<Image> images = new ArrayList<>();
     private String status;
     private String is_active;
     private String created;
@@ -38,7 +42,8 @@ public class Ticket implements Parcelable
         this.title = ((String) in.readValue((String.class.getClassLoader())));
         this.content = ((String) in.readValue((String.class.getClassLoader())));
         this.category_id = ((String) in.readValue((String.class.getClassLoader())));
-        this.images = ((String) in.readValue((String.class.getClassLoader())));
+//        this.images = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.images, com.example.meetap1.Model.Image.class.getClassLoader());
         this.status = ((String) in.readValue((String.class.getClassLoader())));
         this.is_active = ((String) in.readValue((String.class.getClassLoader())));
         this.created = ((String) in.readValue((String.class.getClassLoader())));
@@ -87,13 +92,22 @@ public class Ticket implements Parcelable
         this.category_id = category_id;
     }
 
-    public String getImages() {
+//    public String getImages() {
+//        return images;
+//    }
+//
+//    public void setImages(String images) {
+//        this.images = images;
+//    }
+
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(String images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
+
 
     public String getStatus() {
         return status;
@@ -136,3 +150,4 @@ public class Ticket implements Parcelable
     }
 
 }
+
