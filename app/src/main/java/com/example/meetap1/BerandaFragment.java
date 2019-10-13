@@ -52,7 +52,7 @@ public class BerandaFragment extends Fragment {
         if (ticketAdapter != null)
             ticketAdapter.clerAll();
 
-        AndroidNetworking.get("http://ask.meetap.id/api/ticket/tampilTicket")
+        AndroidNetworking.post("http://ask.meetap.id/api/ticket/tampilTicket")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {

@@ -93,15 +93,15 @@ public class ProfilActivity extends AppCompatActivity {
 
 
         spGender.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, Gender));
-//        spKode.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
-//        btnSimpan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                showPopUpProfil();
-//                Intent go = new Intent(ProfilActivity.this, MenuActivity.class);
-//                startActivity(go);
-//            }
-//        });
+        spKode.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+        btnSimpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                showPopUpProfil();
+                Intent go = new Intent(ProfilActivity.this, MenuActivity.class);
+                startActivity(go);
+            }
+        });
     }
 
     private void DateSpinner() {
