@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.hbb20.CountryCodePicker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,13 +35,14 @@ public class ProfilActivity extends AppCompatActivity {
     private Button btnSimpan;
     Dialog popUpProfil;
     private Spinner spKode, spGender;
-    private EditText etNoTelp;
+    private EditText etNoTelp, etBirthday;
     private TextInputLayout tiBirthday;
-    private TextInputEditText etBirthday;
 
     private static final int PICK_IMAGE_FILE = 1;
     private ImageView imgUser, imgAdd, imgTgl;
     private Uri photoUri;
+
+    private CountryCodePicker ccp;
 
     private String[] Gender = {
             "Select Gender",
@@ -57,7 +59,7 @@ public class ProfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profil);
 
         popUpProfil = new Dialog(ProfilActivity.this);
-
+        ccp = findViewById(R.id.ccp);
         imgAdd = findViewById(R.id.imgAdd);
         imgUser = findViewById(R.id.imgUser);
 
@@ -69,18 +71,18 @@ public class ProfilActivity extends AppCompatActivity {
         });
 
         btnSimpan = findViewById(R.id.btnSmpProf);
-        spKode = findViewById(R.id.spCode);
+//        spKode = findViewById(R.id.spCode);
         spGender = findViewById(R.id.spJK);
         etNoTelp = findViewById(R.id.etNoTelp);
-        etBirthday = findViewById(R.id.etTgl);
+        etBirthday = findViewById(R.id.etTglBirthday);
         imgTgl = findViewById(R.id.imgTgl);
 
         spGender.setSelection(0);
-        spKode.setSelection(62);
+//        spKode.setSelection(62);
 
         date = Calendar.getInstance().getTime();
         simpleDate = new SimpleDateFormat("ddMMyyyy");
-
+//        ccp.get
         //Function Tanggal
         imgTgl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,15 +93,15 @@ public class ProfilActivity extends AppCompatActivity {
 
 
         spGender.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, Gender));
-        spKode.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
-        btnSimpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                showPopUpProfil();
-                Intent go = new Intent(ProfilActivity.this, MenuActivity.class);
-                startActivity(go);
-            }
-        });
+//        spKode.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+//        btnSimpan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                showPopUpProfil();
+//                Intent go = new Intent(ProfilActivity.this, MenuActivity.class);
+//                startActivity(go);
+//            }
+//        });
     }
 
     private void DateSpinner() {

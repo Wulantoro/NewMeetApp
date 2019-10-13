@@ -10,6 +10,7 @@
         android:id="@+id/AppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
     <FrameLayout
@@ -20,7 +21,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40mdp">
+            android:layout_height="@dimen/_45mdp">
 
             <TextView
                 android:layout_width="wrap_content"
