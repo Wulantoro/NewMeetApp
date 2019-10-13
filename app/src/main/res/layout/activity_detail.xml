@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp">
+
+            <ImageView
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:background="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12font_mdp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/RlUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AppBar">
+
+        <ImageView
+            android:id="@+id/imgUser"
+            android:layout_width="@dimen/_60mdp"
+            android:layout_height="@dimen/_60mdp"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginVertical="@dimen/_5mdp"
+            android:background="@drawable/circle" />
+
+        <TextView
+            android:id="@+id/tvNmUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:layout_toRightOf="@id/imgUser"
+            android:text="Nama User"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNameUser"
+            android:layout_marginTop="@dimen/_2mdp"
+            android:layout_toRightOf="@id/imgUser"
+            android:text="12 Sep 2019 13:02:24"
+            android:textSize="@dimen/_10font_mdp"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rvProblem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RlUser">
+
+        <TextView
+            android:id="@+id/tvKategori"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20mdp"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:background="@drawable/bordertrans"
+            android:gravity="center"
+            android:text="Android" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20mdp"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_toRightOf="@id/tvKategori"
+            android:background="@drawable/bordertrans"
+            android:gravity="center"
+            android:text="Java" />
+
+        <TextView
+            android:id="@+id/tvTitleQuest"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20mdp"
+            android:layout_below="@id/tvKategori"
+            android:layout_margin="@dimen/_10mdp"
+            android:gravity="center"
+            android:text="Please My Code error Help me ...."
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15mdp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:id="@+id/SvContent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150mdp"
+            android:layout_below="@id/tvTitleQuest"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_5mdp"
+            android:background="@drawable/bordertrans">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150mdp"
+            android:layout_below="@id/SvContent"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_5mdp"
+            android:background="@drawable/bordertrans" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
