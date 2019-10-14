@@ -3,6 +3,8 @@ package com.example.meetap1;
 import android.app.Dialog;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -30,6 +32,10 @@ public class ChangePassActivity extends AppCompatActivity {
     private TextView tvEmail;
     private Button btnNewPass;
 
+    private TextView tvemail;
+    private TextView tvpassword;
+    public SharedPreferences pref, prf;
+
     boolean isPlay = false;
 
     @Override
@@ -37,6 +43,17 @@ public class ChangePassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_pass);
         popPass = new Dialog(ChangePassActivity.this);
+
+        tvemail = findViewById(R.id.tvemail);
+        tvpassword = findViewById(R.id.tvpassword);
+
+        TextView tvemail2 = findViewById(R.id.tvemail);
+        prf = getSharedPreferences("email", MODE_PRIVATE);
+        tvemail2.setText(prf.getString("etemail", null));
+
+        TextView tvpass = findViewById(R.id.tvpassword);
+        prf = getSharedPreferences("password", MODE_PRIVATE);
+        tvpass.setText(prf.getString("etpassword", null));
 
         imgEye1 = findViewById(R.id.imgEye1);
         imgEye2 = findViewById(R.id.imgEye2);
@@ -85,6 +102,19 @@ public class ChangePassActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent go = new Intent(ChangePassActivity.this, ProfilActivity.class);
+
+                pref = getSharedPreferences("email", MODE_PRIVATE);
+                String tvemail1 = tvemail.getText().toString();
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("etemail", tvemail1);
+                editor.commit();
+
+                pref = getSharedPreferences("password", MODE_PRIVATE);
+                String tvpassword1 = tvpassword.getText().toString();
+                SharedPreferences.Editor editor1 = pref.edit();
+                editor1.putString("etpassword", tvpassword1);
+                editor1.commit();
+
                 ChangePass();
                 startActivity(go);
             }

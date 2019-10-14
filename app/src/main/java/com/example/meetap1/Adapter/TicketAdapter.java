@@ -1,6 +1,7 @@
-package com.example.meetap1;
+package com.example.meetap1.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.meetap1.DetailActivity;
 import com.example.meetap1.Model.Ticket;
+import com.example.meetap1.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("key_ticket", ticket);
+                context.startActivity(intent);
 
             }
         });

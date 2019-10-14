@@ -7,40 +7,58 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.anggastudio.spinnerpickerdialog.SpinnerPickerDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.meetap1.Model.GetId;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 import com.hbb20.CountryCodePicker;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class ProfilActivity extends AppCompatActivity {
 
     private Button btnSimpan;
     Dialog popUpProfil;
-    private Spinner spKode, spGender;
+    private Spinner spKode, spGender, spProvince;
     private EditText etNoTelp, etBirthday;
     private TextInputLayout tiBirthday;
 
     private static final int PICK_IMAGE_FILE = 1;
     private ImageView imgUser, imgAdd, imgTgl;
     private Uri photoUri;
+    private TextView tiFullname1;
+    private Spinner spJK;
 
     private CountryCodePicker ccp;
 
@@ -53,15 +71,41 @@ public class ProfilActivity extends AppCompatActivity {
     DateFormat simpleDate;
     Date date;
 
+    private TextView tvemail;
+    private TextView tvpassword;
+    private TextView tviduser1;
+    public SharedPreferences pref, prf;
+    private Gson gson;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
 
+        gson = new Gson();
+        tvemail = findViewById(R.id.tvemail);
+        tvpassword = findViewById(R.id.tvpassword);
+        tviduser1 = findViewById(R.id.tviduser1);
+
+        TextView tvemail2 = findViewById(R.id.tvemail);
+        prf = getSharedPreferences("email", MODE_PRIVATE);
+        tvemail2.setText(prf.getString("etemail", null));
+
+        TextView tvpass = findViewById(R.id.tvpassword);
+        prf = getSharedPreferences("password", MODE_PRIVATE);
+        tvpass.setText(prf.getString("etpassword", null));
+
         popUpProfil = new Dialog(ProfilActivity.this);
         ccp = findViewById(R.id.ccp);
         imgAdd = findViewById(R.id.imgAdd);
         imgUser = findViewById(R.id.imgUser);
+
+        tiFullname1 = findViewById(R.id.tiFullname1);
+        etNoTelp = findViewById(R.id.etNoTelp);
+        spJK = findViewById(R.id.spJK);
+        spProvince = findViewById(R.id.spProvince);
 
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,15 +137,18 @@ public class ProfilActivity extends AppCompatActivity {
 
 
         spGender.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, Gender));
-        spKode.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+//        spKode.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                showPopUpProfil();
+                updateprofil();
                 Intent go = new Intent(ProfilActivity.this, MenuActivity.class);
                 startActivity(go);
             }
         });
+
+        getIdUser(tvemail.getText().toString(), tvpassword.getText().toString());
     }
 
     private void DateSpinner() {
@@ -170,6 +217,92 @@ public class ProfilActivity extends AppCompatActivity {
 
         //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popUpProfil.show();
+    }
+
+    public void getIdUser(String email, String pass) {
+
+     AndroidNetworking.post("http://ask.meetap.id/api/auth/login/?email=" + email + "&passs=" + pass)
+             .build()
+             .getAsJSONObject(new JSONObjectRequestListener() {
+                 @Override
+                 public void onResponse(JSONObject response) {
+                     List<GetId> result = new ArrayList<>();
+
+                     try {
+                         if (result != null)
+                             result.clear();
+
+                         String message = response.getString("message");
+
+                         if (message.equals("Login success")) {
+                             String records = response.getString("data");
+
+                             JSONArray dataArr = new JSONArray(records);
+
+                             if (dataArr.length() > 0) {
+                                 for (int i = 0; i < dataArr.length(); i++) {
+                                     Log.e("id user = ", dataArr.toString(1));
+
+                                     GetId getId = gson.fromJson(dataArr.getJSONObject(i).toString(), GetId.class);
+                                     result.add(getId);
+                                     tviduser1.setText(getId.getId());
+                                 }
+                             }
+                         }
+                     } catch (JSONException e) {
+                         e.printStackTrace();
+                     }
+                 }
+
+                 @Override
+                 public void onError(ANError anError) {
+
+                 }
+             });
+
+    }
+
+    public void updateprofil() {
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            JSONArray newArr = new JSONArray();
+            jsonObject.put("fullname", tiFullname1.getText().toString());
+            jsonObject.put("handphone_number", etNoTelp.getText().toString());
+//            jsonObject.put("spJK", spJK.)
+            jsonObject.put("", etBirthday.getText().toString());
+
+            newArr.put(jsonObject);
+            Log.e("coba input p = ", newArr.toString(1));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        AndroidNetworking.post("http://ask.meetap.id/api/profile/updateProfile")
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String message = response.getString("message");
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(), "Gagal menambah data", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
     }
 }
 

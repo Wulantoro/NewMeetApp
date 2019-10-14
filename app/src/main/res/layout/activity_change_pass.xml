@@ -129,6 +129,22 @@
             android:textSize="@dimen/_14font_mdp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tvemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnNewPass"
+            android:text="email"/>
+
+        <TextView
+            android:id="@+id/tvpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvemail"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@id/btnNewPass"
+            android:text="password"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

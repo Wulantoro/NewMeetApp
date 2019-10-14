@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -19,6 +20,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.meetap1.Utils.SharedPref;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private ImageView eye;
     Dialog mCobalagi;
+    public SharedPreferences pref, prf;
 
     boolean isPlay = false;
 
@@ -132,6 +135,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
+
+        final SharedPref sharedPref;
+        sharedPref = new SharedPref(this);
+
         final JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("email", etEmail.getText().toString());
@@ -153,7 +160,20 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                             if (status.equals("success")) {
+                                sharedPref.saveSPBoolean(SharedPref.SP_SUDAH_LOGIN, true);
+
+                                pref = getSharedPreferences("email", MODE_PRIVATE);
                                 Intent go = new Intent(LoginActivity.this, PasswordTrueActivity.class);
+                                String tvemail = etEmail.getText().toString();
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putString("etemail", tvemail);
+                                editor.commit();
+
+                                pref = getSharedPreferences("password", MODE_PRIVATE);
+                                String tvpassword = etPass.getText().toString();
+                                SharedPreferences.Editor editor1 = pref.edit();
+                                editor1.putString("etpassword", tvpassword);
+                                editor1.commit();
                                 startActivity(go);
 
                             } else {
@@ -162,6 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+
 
                         }
                     }
