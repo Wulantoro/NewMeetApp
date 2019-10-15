@@ -29,6 +29,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         list = new ArrayList<>();
     }
 
+//    [{"img":"/assets/img_ticket/7/screenshot1.jpg","thumbnail":"1"},{"img":"/assets/img_ticket/7/screenshot2.jpg","thumbnail":"0"}]
+
 
     @NonNull
     @Override
@@ -46,6 +48,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         Log.e(TAG, "dataArr" + ticket.getContent());
 
         holder.tvTitleQuest.setText(ticket.getTitle());
+        holder.tvcreate.setText(ticket.getCreated());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,11 +113,13 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvTitleQuest;
+        public TextView tvcreate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitleQuest = itemView.findViewById(R.id.tvTitleQuest);
+            tvcreate = itemView.findViewById(R.id.tvcreate);
         }
     }
 }

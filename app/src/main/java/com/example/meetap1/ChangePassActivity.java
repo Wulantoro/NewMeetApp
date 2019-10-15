@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,10 +20,15 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.meetap1.Model.UserId;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChangePassActivity extends AppCompatActivity {
 
@@ -35,8 +41,12 @@ public class ChangePassActivity extends AppCompatActivity {
     private TextView tvemail;
     private TextView tvpassword;
     public SharedPreferences pref, prf;
+    private Gson gson;
+    private List<UserId> allList;
 
     boolean isPlay = false;
+
+    private static String TAG = BerandaFragment.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,8 @@ public class ChangePassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_pass);
         popPass = new Dialog(ChangePassActivity.this);
 
+        gson = new Gson();
+        allList = new ArrayList<>();
         tvemail = findViewById(R.id.tvemail);
         tvpassword = findViewById(R.id.tvpassword);
 
@@ -97,6 +109,8 @@ public class ChangePassActivity extends AppCompatActivity {
             }
         });
 
+
+        getIdUser();
 
         btnNewPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +188,55 @@ public class ChangePassActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(getApplicationContext(), "Gagal ubah password", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+    }
+
+    public void getIdUser() {
+        AndroidNetworking.post("http://ask.meetap.id/api/auth/login/")
+                .addBodyParameter("email", tvemail.getText().toString())
+                .addBodyParameter("password", tvpassword.getText().toString())
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        List<UserId> result = new ArrayList<>();
+
+                        try {
+                            if (result != null)
+                                result.clear();
+
+                            Log.e(TAG, "tampil user" + response.toString(1));
+
+                            String message = response.getString("message");
+                            String status = response.getString("status");
+
+                            if (message.equals("Login success")) {
+                                String records = response.getString("data");
+
+                                Log.e(TAG,"idddddd"+ result.toString());
+                                JSONArray dataArr = new JSONArray(records);
+
+                                if (dataArr.length() > 0) {
+                                    for (int i = 0; i < dataArr.length(); i++) {
+                                        UserId userId = gson.fromJson(dataArr.getJSONObject(i).toString(), UserId.class);
+                                        result.add(userId);
+                                        Log.e(TAG, "id udser " + userId.getId());
+                                    }
+
+                                }
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
 
                     }
                 });

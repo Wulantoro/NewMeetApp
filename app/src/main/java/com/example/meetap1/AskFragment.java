@@ -36,6 +36,8 @@ public class AskFragment extends Fragment {
     private TextInputEditText tiTitle;
     private TextView tviduser;
 
+    private static String TAG = AskFragment.class.getSimpleName();
+
     private Gson gson;
     @Nullable
     @Override
@@ -59,6 +61,7 @@ public class AskFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 publishTicket();
+
             }
         });
 
@@ -71,6 +74,7 @@ public class AskFragment extends Fragment {
     public void loadUser() {
 
         AndroidNetworking.post("http://ask.meetap.id/api/profile/tampilProfile")
+                .addBodyParameter("id", "1")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -117,27 +121,30 @@ public class AskFragment extends Fragment {
 
 
     public void publishTicket() {
-//        JSONObject jsonObject = new JSONObject();
-//        try {
-//            JSONArray newArr = new JSONArray();
-//
-//            jsonObject.put("title", tiTitle.getText().toString());
-//            jsonObject.put("content", tiBody.getText().toString());
-//            jsonObject.put("user_id", tags.getText().toString());
-//
-//            newArr.put(jsonObject);
-//            Log.e("coba input = ", newArr.toString(1));
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        JSONObject jsonObject = new JSONObject();
+        try {
+            JSONArray newArr = new JSONArray();
 
+            jsonObject.put("title", tiTitle.getText().toString());
+            jsonObject.put("content", tiBody.getText().toString());
+            jsonObject.put("user_id", tviduser.getText().toString());
+            jsonObject.put("category_id", tags.getText().toString());
+
+            newArr.put(jsonObject);
+            Log.e("coba input = ", newArr.toString(1));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+            Log.e(TAG, "user_id" + tviduser.getText().toString());
+            Log.e(TAG ,"title"+ tiTitle.getText().toString());
         AndroidNetworking.post("http://ask.meetap.id/api/ticket/insertTicket")
-//                .addJSONObjectBody(jsonObject)
-                .addBodyParameter("title", tiTitle.getText().toString())
-                .addBodyParameter("content", tiBody.getText().toString())
-                .addBodyParameter("user_id", tviduser.getText().toString())
-                .addBodyParameter("category_id", tags.getText().toString())
+                .addJSONObjectBody(jsonObject)
+//                .addBodyParameter("title", tiTitle.getText().toString())
+//                .addBodyParameter("content", tiBody.getText().toString())
+//                .addBodyParameter("user_id", tviduser.getText().toString())
+//                .addBodyParameter("category_id", tags.getText().toString())
+
 //                .addBodyParameter("title", tiTitle.getText().toString())
 //                .addBodyParameter("title", tiTitle.getText().toString())
 //                .addBodyParameter("title", tiTitle.getText().toString())

@@ -3,7 +3,7 @@ package com.example.meetap1.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class GetId implements Parcelable {
+public class UserId implements Parcelable {
 
     private String id;
     private String username;
@@ -23,23 +23,23 @@ public class GetId implements Parcelable {
     private String photo;
     private String handphoneNumber;
     private String created;
-    public final static Parcelable.Creator<GetId> CREATOR = new Creator<GetId>() {
+    public final static Parcelable.Creator<UserId> CREATOR = new Creator<UserId>() {
 
 
         @SuppressWarnings({
                 "unchecked"
         })
-        public GetId createFromParcel(Parcel in) {
-            return new GetId(in);
+        public UserId createFromParcel(Parcel in) {
+            return new UserId(in);
         }
 
-        public GetId[] newArray(int size) {
-            return (new GetId[size]);
+        public UserId[] newArray(int size) {
+            return (new UserId[size]);
         }
 
     };
 
-    protected GetId(Parcel in) {
+    protected UserId(Parcel in) {
         this.id = ((String) in.readValue((String.class.getClassLoader())));
         this.username = ((String) in.readValue((String.class.getClassLoader())));
         this.isActive = ((String) in.readValue((String.class.getClassLoader())));
@@ -60,7 +60,7 @@ public class GetId implements Parcelable {
         this.created = ((String) in.readValue((String.class.getClassLoader())));
     }
 
-    public GetId() {
+    public UserId() {
     }
 
     public String getId() {

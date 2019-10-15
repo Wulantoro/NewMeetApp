@@ -1,6 +1,7 @@
 package com.example.meetap1;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class BerandaFragment extends Fragment {
     private TicketAdapter ticketAdapter;
     private Gson gson;
     private List<Ticket> allList;
+
+    private static String TAG = BerandaFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -74,6 +77,7 @@ public class BerandaFragment extends Fragment {
                                     for (int i = 0; i < dataArr.length(); i++) {
                                         Ticket ticket = gson.fromJson(dataArr.getJSONObject(i).toString(), Ticket.class);
                                         result.add(ticket);
+                                        Log.e(TAG, "id" + ticket.getId());
 
                                     }
                                 }
