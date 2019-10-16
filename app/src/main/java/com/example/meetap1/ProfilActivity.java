@@ -167,7 +167,8 @@ public class ProfilActivity extends AppCompatActivity {
             @Override
             public void onSetDate(int month, int day, int year) {
                 month = month + 1;
-                String date = day + "-" + month + "-" + year;
+//                String date = day + "-" + month + "-" + year;
+                String date = year  + "-" + month + "-" + day;
                 DateFormat dp_medium = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
                 String dp_medium_uk_strg = dp_medium.format(Calendar.getInstance().getTime());
                 etBirthday.setText(date);
@@ -295,7 +296,7 @@ public class ProfilActivity extends AppCompatActivity {
             jsonObject.put("id", tviduser1.getText().toString());
             jsonObject.put("fullname", tiFullname1.getText().toString());
             jsonObject.put("handphone_number", etNoTelp.getText().toString());
-//            jsonObject.put("spJK", spJK.)
+            jsonObject.put("spJK", spJK.getSelectedItemPosition());
             jsonObject.put("birthdate", etBirthday.getText().toString());
 
             newArr.put(jsonObject);
