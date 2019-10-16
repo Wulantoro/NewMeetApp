@@ -36,6 +36,7 @@ public class ChangePassActivity extends AppCompatActivity {
     private ImageView imgEye1, imgEye2;
     private EditText NewPass, ConPass;
     private TextView tvEmail;
+    private TextView tviduser;
     private Button btnNewPass;
 
     private TextView tvemail;
@@ -43,6 +44,7 @@ public class ChangePassActivity extends AppCompatActivity {
     public SharedPreferences pref, prf;
     private Gson gson;
     private List<UserId> allList;
+
 
     boolean isPlay = false;
 
@@ -58,6 +60,11 @@ public class ChangePassActivity extends AppCompatActivity {
         allList = new ArrayList<>();
         tvemail = findViewById(R.id.tvemail);
         tvpassword = findViewById(R.id.tvpassword);
+        tviduser = findViewById(R.id.tviduser);
+
+
+        TextView tviduser0 = findViewById(R.id.tviduser);
+        tviduser0.setText("10");
 
         TextView tvemail2 = findViewById(R.id.tvemail);
         prf = getSharedPreferences("email", MODE_PRIVATE);
@@ -160,6 +167,7 @@ public class ChangePassActivity extends AppCompatActivity {
 
         try {
             JSONArray newArr = new JSONArray();
+            jsonObject.put("id", tviduser.getText().toString());
             jsonObject.put("passwordBaru", NewPass.getText().toString());
             jsonObject.put("passwordKonf", ConPass.getText().toString());
 
@@ -168,7 +176,7 @@ public class ChangePassActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/updatePassword")
+        AndroidNetworking.post("http://ask.meetap.id/api/profile/updatePassword?id/")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -204,9 +212,8 @@ public class ChangePassActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         List<UserId> result = new ArrayList<>();
 
+
                         try {
-                            if (result != null)
-                                result.clear();
 
                             Log.e(TAG, "tampil user" + response.toString(1));
 
@@ -224,6 +231,7 @@ public class ChangePassActivity extends AppCompatActivity {
                                         UserId userId = gson.fromJson(dataArr.getJSONObject(i).toString(), UserId.class);
                                         result.add(userId);
                                         Log.e(TAG, "id udser " + userId.getId());
+                                        tviduser.setText(userId.getId());
                                     }
 
                                 }

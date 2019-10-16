@@ -91,6 +91,9 @@ public class ProfilActivity extends AppCompatActivity {
         tvpassword = findViewById(R.id.tvpassword);
         tviduser1 = findViewById(R.id.tviduser1);
 
+        TextView tviduser2 = findViewById(R.id.tviduser1);
+        tviduser2.setText("10");
+
         TextView tvemail2 = findViewById(R.id.tvemail);
         prf = getSharedPreferences("email", MODE_PRIVATE);
         tvemail2.setText(prf.getString("etemail", null));
@@ -289,10 +292,11 @@ public class ProfilActivity extends AppCompatActivity {
 
         try {
             JSONArray newArr = new JSONArray();
+            jsonObject.put("id", tviduser1.getText().toString());
             jsonObject.put("fullname", tiFullname1.getText().toString());
             jsonObject.put("handphone_number", etNoTelp.getText().toString());
 //            jsonObject.put("spJK", spJK.)
-            jsonObject.put("", etBirthday.getText().toString());
+            jsonObject.put("birthdate", etBirthday.getText().toString());
 
             newArr.put(jsonObject);
             Log.e("coba input p = ", newArr.toString(1));
@@ -301,7 +305,7 @@ public class ProfilActivity extends AppCompatActivity {
         }
 
 
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/updateProfile")
+        AndroidNetworking.post("http://ask.meetap.id/api/profile/updateProfile?id")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()
