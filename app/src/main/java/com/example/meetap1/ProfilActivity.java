@@ -28,6 +28,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.anggastudio.spinnerpickerdialog.SpinnerPickerDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.meetap1.Model.User;
 import com.example.meetap1.Model.UserId;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
@@ -229,63 +230,68 @@ public class ProfilActivity extends AppCompatActivity {
 //    public void getIdUser(String email, String pass) {
 
     public void getIdUser() {
-
-//        final JSONObject jsonObject = new JSONObject();
-//        try {
-//            jsonObject.put("email", tvemail.getText().toString());
-//            jsonObject.put("password", tvpassword.getText().toString());
-//
-//            Log.e(TAG, "email " + tvemail.getText().toString());
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
-
-
-//     AndroidNetworking.post("http://ask.meetap.id/api/auth/login/?email=" + email + "&passs=" + pass)
         AndroidNetworking.post("http://ask.meetap.id/api/auth/login/")
-            .addBodyParameter("email", tvemail.getText().toString())
+                .addBodyParameter("email", tvemail.getText().toString())
                 .addBodyParameter("password", tvpassword.getText().toString())
                 .setPriority(Priority.MEDIUM)
-             .build()
-             .getAsJSONObject(new JSONObjectRequestListener() {
-                 @Override
-                 public void onResponse(JSONObject response) {
-                     List<UserId> result = new ArrayList<>();
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        List<User> result = new ArrayList<>();
 
-                     try {
 
-                         if (result != null)
-                             result.clear();
+                        try {
 
-                         Log.e(TAG, "tampil user" + response.toString(1));
-                         String message = response.getString("message");
+                            Log.e(TAG, "tampil user" + response.toString(1));
 
-                         if (message.equals("Login success")) {
-                             String records = response.getString("data");
+                            String message = response.getString("message");
+                            String status = response.getString("status");
 
-                             JSONArray dataArr = new JSONArray(records);
+                            if (message.equals("Login success")) {
+                                String records = response.getString("data");
 
-                             if (dataArr.length() > 0) {
-                                 for (int i = 0; i < dataArr.length(); i++) {
-                                     UserId userId = gson.fromJson(dataArr.getJSONObject(i).toString(), UserId.class);
-                                     result.add(userId);
-                                     tviduser1.setText(String.valueOf(userId.getId()));
-                                     Log.e(TAG, "id" + userId.getId() );
-                                 }
-                             }
-                         }
-                     } catch (JSONException e) {
-                         e.printStackTrace();
-                     }
-                 }
+//                                Log.e(TAG,"user id = "+ records.toString());
 
-                 @Override
-                 public void onError(ANError anError) {
+//                                JSONObject dataArr = new JSONObject(records);
+//                                JSONObject dataArr = new JSONObject();
+//                                Log.e(TAG,"data arr "+ dataArr.length());
 
-                 }
-             });
+////                                if (dataArr.length() > 0) {
+//                                    Log.e(TAG, "DATA ARR ADA ISINYA " + dataArr.length());
+//
+////                                    for (int i = 0; i < dataArr.length(); i++) {
+//                                        User user = gson.fromJson(dataArr.getJSONObject(i).toString(), User.class);
+//                                        result.add(user);
+//                                        Log.e(TAG, "jancok " + dataArr.getJSONObject(String.valueOf(i)).toString());
+                                JSONObject dataArr = new JSONObject(records);
+                                Log.e(TAG,"data arr "+ dataArr.length());
+                                Log.e(TAG, "coba " + dataArr.getString("id"));
 
+//                                        User user = new User(
+//                                                Integer.valueOf(dataArr.get("user_id").toString())
+                                tviduser1.setText(dataArr.getString("id"));
+//                                        );
+
+//                                        Log.e(TAG, "id udser " + Integer.valueOf(user.getUser_id()));
+//
+//                                        System.out.println(user);
+                            }
+
+//                                }
+
+
+//                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
     }
 
     public void updateprofil() {

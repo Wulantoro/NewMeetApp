@@ -40,7 +40,7 @@ public class User implements Parcelable
     }
             ;
 
-    protected User(Parcel in) {
+    public User(Parcel in) {
         this.user_id = ((String) in.readValue((String.class.getClassLoader())));
         this.fullname = ((String) in.readValue((String.class.getClassLoader())));
         this.gender = ((String) in.readValue((String.class.getClassLoader())));
@@ -58,7 +58,7 @@ public class User implements Parcelable
         this.updated = ((String) in.readValue((String.class.getClassLoader())));
     }
 
-    public User() {
+    public User(Integer id) {
     }
 
     public String getUser_id() {
@@ -201,6 +201,25 @@ public class User implements Parcelable
 
     public int describeContents() {
         return 0;
+    }
+
+    public String toString() {
+        return "User{" +
+                "user_id='" + user_id +
+                ", fullname=" + fullname +
+                ", gender=" + gender +
+                ", district=" + district +
+                ", province=" + province +
+                ", city=" + city +
+                ", country=" + country +
+                ", birthdate=" + birthdate +
+                ", college=" + college +
+                ", merriege=" + merriege +
+                ", photo=" + photo +
+                ", handphone_number=" +
+                ", created=" + created +
+                ", updated=" +
+                '}';
     }
 
 }

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,10 +21,16 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.meetap1.Model.UserId;
 import com.example.meetap1.Utils.SharedPref;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private RelativeLayout rl2;
@@ -36,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     public SharedPreferences pref, prf;
 
     boolean isPlay = false;
+    private Gson gson;
+    private static String TAG = LoginActivity.class.getSimpleName();
 
 
     @Override
@@ -62,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
         //Show Error
         rl2.setVisibility(View.INVISIBLE);
         tvPassError.setVisibility(View.INVISIBLE);
+
+        gson = new Gson();
 
         tvDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,12 +165,14 @@ public class LoginActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+
                         try {
                             String message = response.getString("message");
                             String status = response.getString("status");
                             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                             if (status.equals("success")) {
+
                                 sharedPref.saveSPBoolean(SharedPref.SP_SUDAH_LOGIN, true);
 
                                 pref = getSharedPreferences("email", MODE_PRIVATE);
@@ -176,12 +189,15 @@ public class LoginActivity extends AppCompatActivity {
                                 editor1.commit();
                                 startActivity(go);
 
-                            } else {
+                                }
+                            else{
                                 showPopUp();
                             }
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_LONG).show();
 
 
                         }

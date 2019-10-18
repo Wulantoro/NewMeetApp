@@ -20,6 +20,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.meetap1.Model.User;
 import com.example.meetap1.Model.UserId;
 import com.google.gson.Gson;
 
@@ -27,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,12 +45,12 @@ public class ChangePassActivity extends AppCompatActivity {
     private TextView tvpassword;
     public SharedPreferences pref, prf;
     private Gson gson;
-    private List<UserId> allList;
+    private List<User> allList;
 
 
     boolean isPlay = false;
 
-    private static String TAG = BerandaFragment.class.getSimpleName();
+    private static String TAG = ChangePassActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +65,8 @@ public class ChangePassActivity extends AppCompatActivity {
         tviduser = findViewById(R.id.tviduser);
 
 
-        TextView tviduser0 = findViewById(R.id.tviduser);
-        tviduser0.setText("10");
+//        TextView tviduser0 = findViewById(R.id.tviduser);
+//        tviduser0.setText("10");
 
         TextView tvemail2 = findViewById(R.id.tvemail);
         prf = getSharedPreferences("email", MODE_PRIVATE);
@@ -210,7 +212,7 @@ public class ChangePassActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        List<UserId> result = new ArrayList<>();
+                        List<User> result = new ArrayList<>();
 
 
                         try {
@@ -223,21 +225,37 @@ public class ChangePassActivity extends AppCompatActivity {
                             if (message.equals("Login success")) {
                                 String records = response.getString("data");
 
-                                Log.e(TAG,"idddddd"+ result.toString());
-                                JSONArray dataArr = new JSONArray(records);
+//                                Log.e(TAG,"user id = "+ records.toString());
 
-                                if (dataArr.length() > 0) {
-                                    for (int i = 0; i < dataArr.length(); i++) {
-                                        UserId userId = gson.fromJson(dataArr.getJSONObject(i).toString(), UserId.class);
-                                        result.add(userId);
-                                        Log.e(TAG, "id udser " + userId.getId());
-                                        tviduser.setText(userId.getId());
+//                                JSONObject dataArr = new JSONObject(records);
+//                                JSONObject dataArr = new JSONObject();
+//                                Log.e(TAG,"data arr "+ dataArr.length());
+
+////                                if (dataArr.length() > 0) {
+//                                    Log.e(TAG, "DATA ARR ADA ISINYA " + dataArr.length());
+//
+////                                    for (int i = 0; i < dataArr.length(); i++) {
+//                                        User user = gson.fromJson(dataArr.getJSONObject(i).toString(), User.class);
+//                                        result.add(user);
+//                                        Log.e(TAG, "jancok " + dataArr.getJSONObject(String.valueOf(i)).toString());
+                                JSONObject dataArr = new JSONObject(records);
+                                Log.e(TAG,"data arr "+ dataArr.length());
+                                        Log.e(TAG, "coba " + dataArr.getString("id"));
+
+//                                        User user = new User(
+//                                                Integer.valueOf(dataArr.get("user_id").toString())
+                                                tviduser.setText(dataArr.getString("id"));
+//                                        );
+
+//                                        Log.e(TAG, "id udser " + Integer.valueOf(user.getUser_id()));
+//
+//                                        System.out.println(user);
                                     }
 
-                                }
+//                                }
 
 
-                            }
+//                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
