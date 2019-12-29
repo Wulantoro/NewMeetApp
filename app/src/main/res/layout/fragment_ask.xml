@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/view_image_picker"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <include layout="@layout/view_image_picker"/>
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/AppBar"
@@ -30,9 +34,8 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12font_mdp" />
             </androidx.appcompat.widget.Toolbar>
+
         </com.google.android.material.appbar.AppBarLayout>
-
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiTitle1"
@@ -49,7 +52,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiTitle"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40mdp" />
+                android:layout_height="wrap_content"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,12 +98,12 @@
             android:layout_marginHorizontal="@dimen/_10mdp"
             android:layout_marginTop="@dimen/_15mdp"
             android:background="@drawable/bordertrans">
+
             <Spinner
                 android:id="@+id/tags1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40mdp"
-                android:gravity="center"
-
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:spinnerMode="dropdown"/>
 
         </RelativeLayout>
@@ -133,11 +136,11 @@
             <!--             />-->
             <ImageView
                 android:id="@+id/imgTivket"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/tv1"
-                />
+                android:padding="@dimen/_10mdp"
+                android:layout_below="@+id/tv1" />
 
             <ImageView
                 android:id="@+id/addCamera"
@@ -175,172 +178,7 @@
             android:textSize="@dimen/_14font_mdp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tviduser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btnPublish"
-            android:textColor="@color/white"
-            android:text="id user" />
+        </RelativeLayout>
 
-
-
-
-    </RelativeLayout>
-</ScrollView>
-
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent">-->
-
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/AppBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/white"-->
-<!--        android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
-
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="@dimen/_45mdp"-->
-<!--            android:theme="@style/AppTheme">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Ask Problem"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="@dimen/_12font_mdp" />-->
-<!--        </androidx.appcompat.widget.Toolbar>-->
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-
-<!--    <androidx.core.widget.NestedScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_below="@id/AppBar">-->
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/tiTitle1"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="@dimen/_10mdp"-->
-<!--                android:layout_marginTop="@dimen/_10mdp"-->
-<!--                android:hint="Question title"-->
-<!--                app:boxStrokeColor="@color/greenMeetAp"-->
-<!--                app:errorEnabled="true">-->
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/tiTitle"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="@dimen/_40mdp"-->
-<!--                    android:textSize="@dimen/_13font_mdp" />-->
-
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/tiBody1"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/tiTitle1"-->
-<!--                android:layout_marginHorizontal="@dimen/_10mdp"-->
-<!--                app:boxStrokeColor="@color/greenMeetAp"-->
-<!--                app:errorEnabled="true">-->
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/tiBody"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="@dimen/_100mdp"-->
-<!--                    android:gravity="top"-->
-<!--                    android:hint="Question Body"-->
-<!--                    android:textSize="@dimen/_13font_mdp" />-->
-
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-
-<!--            <RelativeLayout-->
-<!--                android:id="@+id/RlAddPhoto"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/tiBody1"-->
-<!--                android:layout_marginHorizontal="@dimen/_12mdp"-->
-<!--                android:background="@drawable/bordertrans">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tv1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginHorizontal="@dimen/_5mdp"-->
-<!--                    android:layout_marginBottom="@dimen/_10mdp"-->
-<!--                    android:text="Add picture"-->
-<!--                    android:textSize="@dimen/_13font_mdp" />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imgAddCamera"-->
-<!--                    android:layout_width="@dimen/_30mdp"-->
-<!--                    android:layout_height="@dimen/_30mdp"-->
-<!--                    android:layout_alignParentRight="true"-->
-<!--                    android:layout_marginRight="@dimen/_5mdp"-->
-<!--                    android:background="@drawable/ic_add_a_photo" />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imgAddGallery"-->
-<!--                    android:layout_width="@dimen/_30mdp"-->
-<!--                    android:layout_height="@dimen/_30mdp"-->
-<!--                    android:layout_marginHorizontal="@dimen/_10mdp"-->
-<!--                    android:layout_toLeftOf="@id/imgAddCamera"-->
-<!--                    android:background="@drawable/ic_gallery" />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/imgContent"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="@dimen/_120mdp"-->
-<!--                    android:layout_below="@id/tv1" />-->
-
-<!--            </RelativeLayout>-->
-
-<!--            <com.skyhope.materialtagview.TagView-->
-<!--                android:id="@+id/tagCategory"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/RlAddPhoto"-->
-<!--                android:layout_marginHorizontal="@dimen/_10mdp"-->
-<!--                android:layout_marginTop="@dimen/_10mdp"-->
-<!--                android:layout_marginBottom="@dimen/_10mdp"-->
-<!--                app:tag_background_color="@color/greenMeetAp"-->
-<!--                app:tag_separator="HASH_SEPARATOR"-->
-<!--                app:tag_text_color="@color/white" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/btnPublish"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="@dimen/_40mdp"-->
-<!--                android:layout_below="@id/tagCategory"-->
-<!--                android:layout_marginHorizontal="@dimen/_10mdp"-->
-<!--                android:layout_marginTop="@dimen/_30mdp"-->
-<!--                android:background="@drawable/btnbig"-->
-<!--                android:text="Publish"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="@dimen/_14font_mdp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tviduser"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/btnPublish"-->
-<!--                android:text="id user" />-->
-
-<!--        </RelativeLayout>-->
-
-<!--    </androidx.core.widget.NestedScrollView>-->
-
-<!--</RelativeLayout>-->
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MeetAp1</string>
+    <string name="app_name">MeetAp</string>
     <string name="province">Province</string>
 
 
@@ -143,4 +143,11 @@
     <string name="proof_required">Foto bukti transfer wajib diisi</string>
     <string name="rate_product">Beri penilaian product</string>
     <string name="not_transaction_yet">Belum melakuan transaksi</string>
+
+    <string name="komentar">Komentar...</string>
+    <string name="One">TextView1</string>
+    <string name="Two">TextView2</string>
+    <string name="Three">TextView3</string>
+    <string name="Swipe">swipe right</string>
+    <string name="Get">Get Started</string>
 </resources>

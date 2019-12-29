@@ -16,6 +16,7 @@
         android:background="@drawable/logomeetap"/>
 
     <ImageView
+        android:id="@+id/LogoMeetAp2"
         android:layout_below="@id/LogoMeetAp"
         android:layout_width="120dp"
         android:layout_height="50dp"

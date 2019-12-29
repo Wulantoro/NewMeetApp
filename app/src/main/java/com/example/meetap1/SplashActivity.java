@@ -7,6 +7,9 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class SplashActivity extends AppCompatActivity {
@@ -17,19 +20,28 @@ public class SplashActivity extends AppCompatActivity {
     int i = 0;
 
     private int waktu_loading=4000;
-
+    ImageView image1,image2;
+    Animation frombuttom,mytranslation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_splash);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
 
-        setContentView(R.layout.activity_splash);
+        image1 = findViewById(R.id.LogoMeetAp);
+        image2 = findViewById(R.id.LogoMeetAp2);
+
+        frombuttom = AnimationUtils.loadAnimation(this,R.anim.frombuttom);
+        mytranslation = AnimationUtils.loadAnimation(this,R.anim.mytranslation);
+
+        image1.startAnimation(frombuttom);
+        image2.startAnimation(mytranslation);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
                 //setelah loading maka akan langsung berpindah ke home activity
-                Intent home=new Intent(SplashActivity.this, LoginActivity.class);
+                Intent home=new Intent(SplashActivity.this, TabActivity.class);
                 startActivity(home);
                 finish();
 

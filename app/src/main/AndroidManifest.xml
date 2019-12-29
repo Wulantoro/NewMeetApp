@@ -9,11 +9,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logomeetap"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TabActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TabTheme"></activity>
         <activity android:name=".ComentarActivity"
             android:theme="@style/AppThemeFullScreen" ></activity>
         <activity

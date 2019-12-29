@@ -81,7 +81,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiFullname1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40mdp"
+                    android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_person"
                     android:textSize="@dimen/_13font_mdp" />
 

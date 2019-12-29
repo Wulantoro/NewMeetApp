@@ -111,7 +111,6 @@ public class AskFragment extends Fragment {
         tags1 = rootView.findViewById(R.id.tags1);
         tiBody = rootView.findViewById(R.id.tiBody);
         tiTitle = rootView.findViewById(R.id.tiTitle);
-        tviduser = rootView.findViewById(R.id.tviduser);
         addGallery = rootView.findViewById(R.id.addGallery);
         addCamera = rootView.findViewById(R.id.addCamera);
         imgTivket = rootView.findViewById(R.id.imgTivket);
@@ -128,7 +127,6 @@ public class AskFragment extends Fragment {
         }
         id = valueOf(System.currentTimeMillis());
 
-        TextView iduser = rootView.findViewById(R.id.tviduser);
         //iduser.setText("1");
 
 
