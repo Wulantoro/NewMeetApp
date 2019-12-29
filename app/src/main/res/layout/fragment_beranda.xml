@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="BerandaFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/AppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
     <FrameLayout
-        android:id="@+id/FlToolbar"
+        android:id="@+id/frameBeranda"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45mdp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/AppBar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="All Problem"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12font_mdp" />
+                android:background="@color/white"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        </androidx.appcompat.widget.Toolbar>
+                <FrameLayout
+                    android:id="@+id/FlToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45mdp">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="All Problem"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12font_mdp" />
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </FrameLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/AppBar"
+                android:layout_marginBottom="@dimen/_40mdp">
+
+                <!--    <TextView-->
+                <!--        android:layout_width="wrap_content"-->
+                <!--        android:layout_height="wrap_content"-->
+                <!--        android:layout_centerHorizontal="true"-->
+                <!--        android:layout_centerVertical="true"-->
+                <!--        android:text="Home"-->
+                <!--        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTicketList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </FrameLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-        <!--    <TextView-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_centerHorizontal="true"-->
-        <!--        android:layout_centerVertical="true"-->
-        <!--        android:text="Home"-->
-        <!--        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />-->
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTicketList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-    </RelativeLayout>
-
-
-</FrameLayout>
+</RelativeLayout>

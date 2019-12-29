@@ -2,9 +2,12 @@ package com.example.meetap1;
 
 import android.app.Dialog;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -22,6 +25,13 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.meetap1.Model.User;
 import com.example.meetap1.Model.UserId;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -30,6 +40,7 @@ import org.json.JSONObject;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChangePassActivity extends AppCompatActivity {
@@ -38,18 +49,17 @@ public class ChangePassActivity extends AppCompatActivity {
     private ImageView imgEye1, imgEye2;
     private EditText NewPass, ConPass;
     private TextView tvEmail;
-    private TextView tviduser;
     private Button btnNewPass;
 
-    private TextView tvemail;
-    private TextView tvpassword;
     public SharedPreferences pref, prf;
     private Gson gson;
     private List<User> allList;
 
+//    FirebaseAuth auth;
+//    DatabaseReference reference;
 
+    String idUser, tvemail1, pass;
     boolean isPlay = false;
-
     private static String TAG = ChangePassActivity.class.getSimpleName();
 
     @Override
@@ -58,23 +68,10 @@ public class ChangePassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_pass);
         popPass = new Dialog(ChangePassActivity.this);
 
+//        auth = FirebaseAuth.getInstance();
+
         gson = new Gson();
         allList = new ArrayList<>();
-        tvemail = findViewById(R.id.tvemail);
-        tvpassword = findViewById(R.id.tvpassword);
-        tviduser = findViewById(R.id.tviduser);
-
-
-//        TextView tviduser0 = findViewById(R.id.tviduser);
-//        tviduser0.setText("10");
-
-        TextView tvemail2 = findViewById(R.id.tvemail);
-        prf = getSharedPreferences("email", MODE_PRIVATE);
-        tvemail2.setText(prf.getString("etemail", null));
-
-        TextView tvpass = findViewById(R.id.tvpassword);
-        prf = getSharedPreferences("password", MODE_PRIVATE);
-        tvpass.setText(prf.getString("etpassword", null));
 
         imgEye1 = findViewById(R.id.imgEye1);
         imgEye2 = findViewById(R.id.imgEye2);
@@ -85,6 +82,8 @@ public class ChangePassActivity extends AppCompatActivity {
         btnNewPass = findViewById(R.id.btnNewPass);
 
         tvEmail = findViewById(R.id.tvEmail);
+        prf = getSharedPreferences("email", MODE_PRIVATE);
+        tvEmail.setText(prf.getString("etemail1", null));
 
         imgEye1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,33 +117,140 @@ public class ChangePassActivity extends AppCompatActivity {
             }
         });
 
+        //SharedPreference
+        pref = getSharedPreferences("id", MODE_PRIVATE);
+        idUser = pref.getString("IdUser1", null);
+        SharedPreferences.Editor editorId = pref.edit();
+        editorId.putString("IdUser2", idUser);
+        editorId.commit();
 
-        getIdUser();
+        pref = getSharedPreferences("email", MODE_PRIVATE);
+        tvemail1 = tvEmail.getText().toString();
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("email", tvemail1);
+        editor.commit();
+
 
         btnNewPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent go = new Intent(ChangePassActivity.this, ProfilActivity.class);
-
-                pref = getSharedPreferences("email", MODE_PRIVATE);
-                String tvemail1 = tvemail.getText().toString();
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("etemail", tvemail1);
-                editor.commit();
-
                 pref = getSharedPreferences("password", MODE_PRIVATE);
-                String tvpassword1 = tvpassword.getText().toString();
+                pass = NewPass.getText().toString();
                 SharedPreferences.Editor editor1 = pref.edit();
-                editor1.putString("etpassword", tvpassword1);
+                editor1.putString("password", pass);
                 editor1.commit();
 
-                ChangePass();
-                startActivity(go);
+                Log.e(TAG,"pASSWORD : "+NewPass.getText().toString());
+
+                if (NewPass.getText().toString().length()== 0 || NewPass.getText().toString().length()<6){
+                   NewPass.setError("Password kurang dari 6 digit");
+                   NewPass.requestFocus();
+
+                }else if (!ConPass.getText().toString().equals(NewPass.getText().toString())){
+                    ConPass.setError("Cek Password anda");
+                    ConPass.requestFocus();
+                }else {
+//                    regFirebase(tvEmail.getText().toString(), NewPass.getText().toString());
+//                    Log.e(TAG,"Password : " +NewPass);
+                    Fan();
+
+                }
+
             }
         });
 
 
     }
+
+    private void Fan(){
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            JSONArray newArr = new JSONArray();
+            jsonObject.put("id", idUser);
+            jsonObject.put("passwordBaru", NewPass.getText().toString());
+            jsonObject.put("passwordKonf", ConPass.getText().toString());
+
+            newArr.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.post("http://ask.meetap.id/api/profile/updatePassword?id/")
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String status = response.getString("status");
+                            String message = response.getString("message");
+                            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                            if (status.equals("success")){
+
+                                Intent go = new Intent(ChangePassActivity.this, ProfilActivity.class);
+                                go.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(go);
+                                finish();
+                                Toast.makeText(getApplicationContext(), idUser, Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "JSONExceptions"+ e, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
+    }
+
+    //NewPass.getText().toString().trim()
+
+//    private void regFirebase(final String email, final String password){
+//        auth.createUserWithEmailAndPassword(email,password)
+//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()){
+//                            FirebaseUser firebaseUser = auth.getCurrentUser();
+//                            String userIdFirebase = firebaseUser.getUid();
+//
+//                            Log.e(TAG, "Email : " +tvemail1);
+//                            Log.e(TAG, "Pass : " +pass);
+//
+//                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userIdFirebase);
+//
+//                            HashMap<String, String> hashMap = new HashMap<>();
+//                            hashMap.put("id", userIdFirebase);
+//                            hashMap.put("username",email);
+//                            hashMap.put("email",email);
+//                            hashMap.put("password",password);
+//                            hashMap.put("Status","Member");
+//                            hashMap.put("imageURL", "default");
+//
+//                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//                                    if (task.isSuccessful()){
+//                                       Fan();
+//                                    }else {
+//                                        Toast.makeText(ChangePassActivity.this,"Authentification Failed", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            });
+//                        }
+//                    }
+//                });
+//    }
+
 
     private void showPopBerhasil() {
 
@@ -163,110 +269,5 @@ public class ChangePassActivity extends AppCompatActivity {
         //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popPass.show();
     }
-
-    public void ChangePass() {
-        JSONObject jsonObject = new JSONObject();
-
-        try {
-            JSONArray newArr = new JSONArray();
-            jsonObject.put("id", tviduser.getText().toString());
-            jsonObject.put("passwordBaru", NewPass.getText().toString());
-            jsonObject.put("passwordKonf", ConPass.getText().toString());
-
-            newArr.put(jsonObject);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/updatePassword?id/")
-                .addJSONObjectBody(jsonObject)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String message = response.getString("message");
-                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONExceptions"+ e, Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast.makeText(getApplicationContext(), "Gagal ubah password", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-    }
-
-    public void getIdUser() {
-        AndroidNetworking.post("http://ask.meetap.id/api/auth/login/")
-                .addBodyParameter("email", tvemail.getText().toString())
-                .addBodyParameter("password", tvpassword.getText().toString())
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        List<User> result = new ArrayList<>();
-
-
-                        try {
-
-                            Log.e(TAG, "tampil user" + response.toString(1));
-
-                            String message = response.getString("message");
-                            String status = response.getString("status");
-
-                            if (message.equals("Login success")) {
-                                String records = response.getString("data");
-
-//                                Log.e(TAG,"user id = "+ records.toString());
-
-//                                JSONObject dataArr = new JSONObject(records);
-//                                JSONObject dataArr = new JSONObject();
-//                                Log.e(TAG,"data arr "+ dataArr.length());
-
-////                                if (dataArr.length() > 0) {
-//                                    Log.e(TAG, "DATA ARR ADA ISINYA " + dataArr.length());
-//
-////                                    for (int i = 0; i < dataArr.length(); i++) {
-//                                        User user = gson.fromJson(dataArr.getJSONObject(i).toString(), User.class);
-//                                        result.add(user);
-//                                        Log.e(TAG, "jancok " + dataArr.getJSONObject(String.valueOf(i)).toString());
-                                JSONObject dataArr = new JSONObject(records);
-                                Log.e(TAG,"data arr "+ dataArr.length());
-                                        Log.e(TAG, "coba " + dataArr.getString("id"));
-
-//                                        User user = new User(
-//                                                Integer.valueOf(dataArr.get("user_id").toString())
-                                                tviduser.setText(dataArr.getString("id"));
-//                                        );
-
-//                                        Log.e(TAG, "id udser " + Integer.valueOf(user.getUser_id()));
-//
-//                                        System.out.println(user);
-                                    }
-
-//                                }
-
-
-//                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-
-                    }
-                });
-    }
-
 
 }

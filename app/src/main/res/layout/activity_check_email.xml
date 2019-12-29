@@ -42,6 +42,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/tv3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv1"
@@ -51,6 +52,32 @@
             android:layout_marginTop="@dimen/_20mdp"
             android:layout_marginHorizontal="@dimen/_7mdp"
             android:gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_below="@id/tv3"
+            android:layout_marginTop="@dimen/_20mdp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bordertrans"
+            android:orientation="horizontal"
+            android:layout_width="@dimen/_150mdp"
+            android:layout_height="@dimen/_30mdp">
+
+            <EditText
+                android:id="@+id/etPassword1"
+                android:textAlignment="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@null"/>
+
+            <ImageButton
+                android:id="@+id/imgCopy"
+                android:layout_width="@dimen/_15mdp"
+                android:layout_height="@dimen/_15mdp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_content_copy"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

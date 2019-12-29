@@ -2,11 +2,261 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_50"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <RelativeLayout
+        android:id="@+id/appBarProfil"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150mdp"
+        android:background="@drawable/bcgprofil">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"/>
+
+        <TextView
+            android:id="@+id/tvUsernameProfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:layout_marginTop="@dimen/_20mdp"
+            android:layout_marginLeft="@dimen/_20mdp"
+            android:textSize="@dimen/_15font_mdp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/tvEmailProfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvUsernameProfil"
+            android:text="Email@gmail.com"
+            android:layout_marginLeft="@dimen/_20mdp"
+            android:textSize="@dimen/_8font_mdp"
+            android:textColor="@color/white"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgUserProfil"
+            android:layout_width="@dimen/_80mdp"
+            android:layout_height="@dimen/_80mdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_profil"
+            android:layout_marginRight="@dimen/_20mdp"
+            android:layout_alignParentRight="true"
+            app:civ_border_color="@color/grey_300"
+            app:civ_border_width="@dimen/_2mdp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@id/appBarProfil"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/_10mdp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_40mdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20mdp">
+
+            <ImageView
+                android:id="@+id/imgCollage"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
+                android:background="@drawable/mortarboard"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgCollage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pendidikan"
+                    android:textSize="@dimen/_10font_mdp"/>
+
+                <TextView
+                    android:id="@+id/tvPendidikanProfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pendidikan"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_10mdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20mdp">
+
+            <ImageView
+                android:id="@+id/imgBirthday"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
+                android:background="@drawable/cake"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgBirthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Lahir"
+                    android:textSize="@dimen/_10font_mdp"/>
+
+                <TextView
+                    android:id="@+id/tvUlangtahunProfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02 September 1990"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_15mdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20mdp">
+
+            <ImageView
+                android:id="@+id/imgCountry"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
+                android:background="@drawable/brazil"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kebangsaan"
+                    android:textSize="@dimen/_10font_mdp"/>
+
+                <TextView
+                    android:id="@+id/tvCountryProfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Indonesia"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_15mdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20mdp">
+
+            <ImageView
+                android:id="@+id/imgAlamat"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
+                android:background="@drawable/address"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgAlamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat"
+                    android:textSize="@dimen/_10font_mdp"/>
+
+                <TextView
+                    android:id="@+id/tvAlamatProfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jl.Sudirman no 190"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_15mdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20mdp">
+
+            <ImageView
+                android:id="@+id/imgHandphone"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
+                android:background="@drawable/smartphone"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgHandphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No. Telphone"
+                    android:textSize="@dimen/_10font_mdp"/>
+
+                <TextView
+                    android:id="@+id/tvTelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="08908090800"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imgLogOut"
+            android:layout_marginTop="@dimen/_30mdp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_logout"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_12font_mdp"
+            android:text="Keluar"
+            android:textColor="@color/black"/>
 
 
-
-
-
+    </LinearLayout>
 </RelativeLayout>

@@ -14,7 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".ComentarActivity"
+            android:theme="@style/AppThemeFullScreen" ></activity>
+        <activity
+            android:name=".ChatActivity"
+            android:theme="@style/AppThemeFullScreen" />
+        <activity android:name=".ImagePicker.HiddenActivity" />
+        <activity
+            android:name=".DetailActivity"
+            android:theme="@style/AppThemeFullScreen" />
         <activity
             android:name=".CheckEmailActivity"
             android:screenOrientation="portrait"
@@ -26,7 +34,7 @@
         <activity
             android:name=".MenuActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeFullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ProfilActivity"
             android:screenOrientation="portrait"

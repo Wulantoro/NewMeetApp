@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:singleLine="true"
+                android:inputType="textEmailAddress"
                 android:layout_marginLeft="@dimen/_5mdp"
                 android:background="@null"
                 android:hint="Email" />

@@ -1,113 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_200mdp"
-    android:background="@drawable/bordertrans">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/_15mdp"
+    android:foreground="?attr/selectableItemBackground"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
     <RelativeLayout
-        android:id="@+id/RvUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/grey_200">
 
-        <ImageView
-            android:id="@+id/imgUser"
-            android:layout_width="@dimen/_60mdp"
-            android:layout_height="@dimen/_60mdp"
-            android:layout_margin="@dimen/_10mdp"
-            android:background="@drawable/circle" />
-
-        <TextView
-            android:id="@+id/tvNameUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10mdp"
-            android:layout_toRightOf="@id/imgUser"
-            android:text="Nama User"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14font_mdp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvcreate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvNameUser"
-            android:layout_marginTop="@dimen/_2mdp"
-            android:layout_toRightOf="@id/imgUser"
-            android:text="12 Sep 2019 13:02:24"
-            android:textSize="@dimen/_10font_mdp"
-            android:textStyle="normal" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rvProblem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/RvUser">
-
-        <TextView
-            android:id="@+id/tvKategori"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_20mdp"
-            android:layout_marginHorizontal="@dimen/_10mdp"
-            android:background="@drawable/bordertrans"
-            android:gravity="center"
-            android:text="Android" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_20mdp"
-            android:layout_marginHorizontal="@dimen/_10mdp"
-            android:layout_toRightOf="@id/tvKategori"
-            android:background="@drawable/bordertrans"
-            android:gravity="center"
-            android:text="Java" />
-
-        <TextView
-            android:id="@+id/tvTitleQuest"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_20mdp"
-            android:layout_below="@id/tvKategori"
-            android:layout_margin="@dimen/_15mdp"
-            android:gravity="center"
-            android:text="Please My Code error Help me ...."
-            android:textColor="@color/black"
-            android:textSize="@dimen/_15mdp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/line1"
+        <RelativeLayout
+            android:id="@+id/RvUser"
+            android:padding="@dimen/_5mdp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1mdp"
-            android:layout_below="@id/tvTitleQuest"
-            android:layout_marginHorizontal="@dimen/_5mdp"
-            android:background="@color/grey_500" />
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_marginTop="@dimen/_10mdp"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40mdp"
-        android:layout_below="@id/rvProblem">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUserTicket"
+                android:layout_width="@dimen/_60mdp"
+                android:layout_height="@dimen/_60mdp"
+                android:layout_marginTop="@dimen/_5mdp"
+                android:layout_marginRight="@dimen/_10mdp"
+                android:src="@drawable/icon_profil"
+                app:civ_border_color="@color/grey_300"
+                app:civ_border_width="@dimen/_2mdp"/>
 
-        <ImageView
-            android:id="@+id/imgComent"
-            android:layout_width="@dimen/_30mdp"
-            android:layout_height="@dimen/_30mdp"
-            android:background="@drawable/ic_comment"
-            android:layout_toLeftOf="@id/tvComment"/>
+            <TextView
+                android:id="@+id/tvNameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:layout_toRightOf="@id/imgUserTicket"
+                android:text="Nama User"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14font_mdp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvComment"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvcreate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNameUser"
+                android:layout_marginTop="@dimen/_2mdp"
+                android:layout_toRightOf="@id/imgUserTicket"
+                android:text="12 Sep 2019 13:02:24"
+                android:textSize="@dimen/_10font_mdp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/statusTicket"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/_5mdp"
+                android:text="status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rvProblem"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="10"
-            android:layout_marginRight="@dimen/_10mdp"
-            android:textSize="@dimen/_15font_mdp"/>
+            android:layout_below="@id/RvUser">
+
+            <TextView
+                android:id="@+id/tvTitleQuest"
+                android:layout_width="wrap_content"
+                android:paddingHorizontal="@dimen/_5mdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Please My Code error Help me ...."
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15mdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvContentTicket"
+                android:layout_below="@id/tvTitleQuest"
+                android:paddingHorizontal="@dimen/_5mdp"
+                android:layout_marginBottom="@dimen/_5mdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/imgTicket"
+                android:layout_below="@id/tvContentTicket"
+                android:layout_marginBottom="@dimen/_5mdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_below="@id/imgTicket"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1mdp"
+                android:layout_marginHorizontal="@dimen/_5mdp"
+                android:background="@color/black"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_below="@id/rvProblem"
+            android:layout_width="match_parent"
+            android:padding="@dimen/_5mdp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rvLike"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgStarTicket"
+                    android:layout_width="@dimen/_15mdp"
+                    android:layout_height="@dimen/_15mdp"
+                    android:background="@drawable/ic_star"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/imgStarTicket"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Favorit"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rvKomentar"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgComentarTicket"
+                    android:layout_width="@dimen/_15mdp"
+                    android:layout_height="@dimen/_15mdp"
+                    android:background="@drawable/ic_chat"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/imgComentarTicket"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Komentar"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rvShare"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgShareTicket"
+                    android:layout_width="@dimen/_15mdp"
+                    android:layout_height="@dimen/_15mdp"
+                    android:background="@drawable/ic_share"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/imgShareTicket"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/_5mdp"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Berbagi"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

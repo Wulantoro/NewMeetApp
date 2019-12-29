@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/_10mdp"
+    android:background="@color/white"
+    android:foreground="?attr/selectableItemBackground"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+    <RelativeLayout
+        android:id="@+id/RvMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgUser"
+            android:layout_width="@dimen/_60mdp"
+            android:layout_height="@dimen/_60mdp"
+            android:layout_margin="@dimen/_10mdp"
+            android:src="@drawable/icon_profil"
+            app:civ_border_color="@color/grey_300"
+            app:civ_border_width="@dimen/_2mdp"/>
+
+        <TextView
+            android:id="@+id/tvNameMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:layout_toRightOf="@id/imgUser"
+            android:text="Nama User"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvEmailMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNameMember"
+            android:layout_marginTop="@dimen/_2mdp"
+            android:layout_toRightOf="@id/imgUser"
+            android:text="Email"
+            android:textSize="@dimen/_10font_mdp"
+            android:textStyle="normal" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1mdp"
+            android:layout_marginLeft="@dimen/_79mdp"
+            android:layout_marginRight="@dimen/_5mdp"
+            android:layout_marginTop="@dimen/_5mdp"
+            android:layout_below="@id/imgUser"
+            android:background="@color/grey_500" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

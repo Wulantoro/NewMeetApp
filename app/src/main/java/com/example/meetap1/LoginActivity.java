@@ -1,11 +1,16 @@
 package com.example.meetap1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import dmax.dialog.SpotsDialog;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -21,18 +26,38 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.meetap1.Model.User;
 import com.example.meetap1.Model.UserId;
+import com.example.meetap1.Utils.AppPermission;
+import com.example.meetap1.Utils.GlobalHelper;
 import com.example.meetap1.Utils.SharedPref;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String[] ALL_PERMISSIONS = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+    };
+
+    private static final int WRITE_EXTERNAL_STORAGE_CODE = 901;
+    private static final int READ_EXTERNAL_STORAGE_CODE = 902;
+    private static final int CAMERA_CODE = 904;
+    private static final int ACCESS_CALL_PHONE = 903;
+    private static final int ALL_REQUEST_CODE = 999;
+    private AppPermission mRuntimePermission;
+
+
     private RelativeLayout rl2;
     private TextView TvDaftar;
     private EditText etPass, etEmail;
@@ -44,13 +69,40 @@ public class LoginActivity extends AppCompatActivity {
 
     boolean isPlay = false;
     private Gson gson;
+    private String idUser;
+
+    private int progressBarStatus = 0;
+    private Handler progressBarHandler = new Handler();
+    private long filesize = 0;
+
     private static String TAG = LoginActivity.class.getSimpleName();
 
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        auth = FirebaseAuth.getInstance();
+
+
+        mRuntimePermission = new AppPermission(this);
+
+        if (mRuntimePermission.hasPermission(ALL_PERMISSIONS)) {
+            GlobalHelper.createFolder();
+        }else{
+            mRuntimePermission.requestPermission(this, ALL_PERMISSIONS, ALL_REQUEST_CODE);
+        }
+
+        SharedPref sharedPref;
+        sharedPref = new SharedPref(this);
+
+        if (sharedPref.getSPSudahLogin()) {
+            startActivity(new Intent(LoginActivity.this, MenuActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+//            startActivity(new Intent(LoginActivity.this, ProfilActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        }
 
         //popUp
         mCobalagi = new Dialog(LoginActivity.this);
@@ -104,8 +156,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Validasi
-//                validasiLogin();
-                login();
+                validasiLogin();
+
 
             }
         });
@@ -122,8 +174,7 @@ public class LoginActivity extends AppCompatActivity {
         }else if (Password.length()< 6){
             showPopUp();
         }else {
-            Intent go = new Intent(LoginActivity.this, PasswordTrueActivity.class);
-            startActivity(go);
+            login();
         }
     }
 
@@ -145,7 +196,10 @@ public class LoginActivity extends AppCompatActivity {
         mCobalagi.show();
     }
 
+
     private void login() {
+        final AlertDialog waitingDialog = new SpotsDialog(LoginActivity.this,"Harap Sabar");
+        waitingDialog.show();
 
         final SharedPref sharedPref;
         sharedPref = new SharedPref(this);
@@ -169,25 +223,99 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             String message = response.getString("message");
                             String status = response.getString("status");
-                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                             if (status.equals("success")) {
+                                //data user
+                                String User = response.getString("data");
 
-                                sharedPref.saveSPBoolean(SharedPref.SP_SUDAH_LOGIN, true);
+                                JSONObject jsonObjectUser = new JSONObject(User);
+                                //get id_user
+                                //String idUser = jsonObjectUser.getString("id");
 
-                                pref = getSharedPreferences("email", MODE_PRIVATE);
-                                Intent go = new Intent(LoginActivity.this, PasswordTrueActivity.class);
-                                String tvemail = etEmail.getText().toString();
-                                SharedPreferences.Editor editor = pref.edit();
-                                editor.putString("etemail", tvemail);
-                                editor.commit();
+                                //get fullname
+                                String status1 = jsonObjectUser.getString("status");
+                                //check new user or member
+                                if (status1.equals("belum_update")){
+                                    //New User
+                                    sharedPref.saveSPBoolean(SharedPref.SP_SUDAH_LOGIN, true);
 
-                                pref = getSharedPreferences("password", MODE_PRIVATE);
-                                String tvpassword = etPass.getText().toString();
-                                SharedPreferences.Editor editor1 = pref.edit();
-                                editor1.putString("etpassword", tvpassword);
-                                editor1.commit();
-                                startActivity(go);
+                                    pref = getSharedPreferences("id", MODE_PRIVATE);
+                                    idUser = jsonObjectUser.getString("id");
+                                    SharedPreferences.Editor editorId = pref.edit();
+                                    editorId.putString("IdUser", idUser);
+                                    editorId.commit();
+                                    Toast.makeText(getApplicationContext(), idUser, Toast.LENGTH_SHORT).show();
+
+                                    pref = getSharedPreferences("email", MODE_PRIVATE);
+                                    String tvemail = etEmail.getText().toString();
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    editor.putString("etemail", tvemail);
+                                    editor.commit();
+
+                                    pref = getSharedPreferences("password", MODE_PRIVATE);
+                                    String tvpassword = etPass.getText().toString();
+                                    SharedPreferences.Editor editor1 = pref.edit();
+                                    editor1.putString("etpassword", tvpassword);
+                                    editor1.commit();
+
+                                    waitingDialog.dismiss();
+                                    Intent go = new Intent(LoginActivity.this, PasswordTrueActivity.class);
+                                    startActivity(go);
+                                    finish();
+                                }else {
+                                    //Member
+                                    sharedPref.saveSPBoolean(SharedPref.SP_SUDAH_LOGIN, true);
+
+                                    pref = getSharedPreferences("id", MODE_PRIVATE);
+                                    String idUser = jsonObjectUser.getString("id");
+                                    SharedPreferences.Editor editorId = pref.edit();
+                                    editorId.putString("IdUser", idUser);
+                                    editorId.commit();
+
+                                    //Push Fragment
+                                    Bundle id = new Bundle();
+                                    id.putString("key", idUser);
+                                    MemberFragment fragment = new MemberFragment();
+                                    fragment.setArguments(id);
+
+                                    Toast.makeText(getApplicationContext(), id.toString(), Toast.LENGTH_SHORT).show();
+
+                                    pref = getSharedPreferences("email", MODE_PRIVATE);
+                                    String tvemail = etEmail.getText().toString();
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    editor.putString("etemail", tvemail);
+                                    editor.commit();
+
+                                    pref = getSharedPreferences("password", MODE_PRIVATE);
+                                    String tvpassword = etPass.getText().toString();
+                                    SharedPreferences.Editor editor1 = pref.edit();
+                                    editor1.putString("etpassword", tvpassword);
+                                    editor1.commit();
+
+                                    Log.e(TAG,"EMAIL : "+etEmail);
+                                    Log.e(TAG,"PASSWORD : "+etPass);
+                                    Log.e(TAG,"EMAIL1 : "+tvemail);
+                                    Log.e(TAG,"PASSWORD1 : "+tvpassword);
+
+                                    auth.signInWithEmailAndPassword(tvemail, tvpassword)
+                                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    if (task.isSuccessful()){
+                                                        waitingDialog.dismiss();
+                                                        Intent go = new Intent(LoginActivity.this, MenuActivity.class);
+                                                        go.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        startActivity(go);
+                                                        finish();
+                                                    }else {
+                                                        waitingDialog.dismiss();
+                                                        Toast.makeText(LoginActivity.this,"Authentification Failed", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                }
 
                                 }
                             else{
@@ -197,7 +325,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_LONG).show();
 
 
                         }
@@ -205,6 +333,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
+                        waitingDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Gagal Login", Toast.LENGTH_LONG).show();
 
                     }

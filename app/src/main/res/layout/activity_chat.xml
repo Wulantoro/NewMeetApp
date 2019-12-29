@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_100"
+    tools:context=".ChatActivity">
+
+    <RelativeLayout
+        android:id="@+id/appbarMember"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50mdp"
+        android:theme="@style/Widget.Design.AppBarLayout">
+
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="@dimen/_20mdp"
+            android:layout_height="@dimen/_20mdp"
+            android:background="@drawable/ic_arrow_back"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginHorizontal="@dimen/_10mdp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgUserChat"
+            android:layout_toRightOf="@id/imgView"
+            android:layout_width="@dimen/_40mdp"
+            android:layout_height="@dimen/_40mdp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_10mdp"
+            android:src="@drawable/icon_profil"
+            app:civ_border_color="@color/grey_500"
+            app:civ_border_width="@dimen/_2mdp" />
+
+        <TextView
+            android:id="@+id/tvNameMemberChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:layout_toRightOf="@id/imgUserChat"
+            android:text="Nama User"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fabSend"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:clickable="true"-->
+<!--        android:src="@drawable/ic_send"-->
+<!--        android:tint="@color/white"-->
+<!--        app:fabSize="mini" />-->
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginHorizontal="@dimen/_5mdp"-->
+<!--        android:layout_toLeftOf="@id/fabSend">-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/etInput"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Ketikkan Pesan" />-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/rvSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5mdp"
+        android:background="#fff"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/etInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Transparent"
+            android:hint="Ketik disini....."
+            android:layout_toLeftOf="@id/btnSend"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:id="@+id/btnSend"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_send"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbarMember"
+        android:layout_above="@id/rvSend"/>
+
+<!--            <ListView-->
+<!--                android:id="@+id/lvChat"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginBottom="@dimen/_10mdp"-->
+<!--                android:divider="@color/Transparent"-->
+<!--                android:dividerHeight="@dimen/_10mdp">-->
+
+<!--            </ListView>-->
+
+
+
+</RelativeLayout>

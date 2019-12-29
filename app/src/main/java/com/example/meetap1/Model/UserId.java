@@ -23,6 +23,10 @@ public class UserId implements Parcelable {
     private String photo;
     private String handphoneNumber;
     private String created;
+    private String update;
+    private String status;
+    private String photo_file;
+
     public final static Parcelable.Creator<UserId> CREATOR = new Creator<UserId>() {
 
 
@@ -58,6 +62,9 @@ public class UserId implements Parcelable {
         this.photo = ((String) in.readValue((String.class.getClassLoader())));
         this.handphoneNumber = ((String) in.readValue((String.class.getClassLoader())));
         this.created = ((String) in.readValue((String.class.getClassLoader())));
+        this.status = ((String) in.readValue((String.class.getClassLoader())));
+        this.update = ((String) in.readValue((String.class.getClassLoader())));
+        this.photo_file = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public UserId() {
@@ -207,6 +214,30 @@ public class UserId implements Parcelable {
         this.created = created;
     }
 
+    public String getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(String update) {
+        this.update = update;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPhoto_file() {
+        return photo_file;
+    }
+
+    public void setPhoto_file(String photo_file) {
+        this.photo_file = photo_file;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(username);
@@ -226,6 +257,9 @@ public class UserId implements Parcelable {
         dest.writeValue(photo);
         dest.writeValue(handphoneNumber);
         dest.writeValue(created);
+        dest.writeValue(status);
+        dest.writeValue(update);
+        dest.writeValue(photo_file);
     }
 
     public int describeContents() {

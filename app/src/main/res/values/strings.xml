@@ -1,3 +1,146 @@
 <resources>
     <string name="app_name">MeetAp1</string>
+    <string name="province">Province</string>
+
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="update">Perbarui Data</string>
+    <string name="update_password">Perbarui Password</string>
+    <string name="email">Email</string>
+    <string name="price">Harga</string>
+    <string name="qty">Kuantitas</string>
+    <string name="name">Nama Lengkap</string>
+    <string name="product_name">Nama Product</string>
+    <string name="hp">No. HP</string>
+    <string name="address">Alamat</string>
+    <string name="description">Keterangan</string>
+    <string name="password">Password</string>
+    <string name="new_password">Password Baru</string>
+    <string name="new_password_again">Ulangi Password Baru</string>
+    <string name="birthday">Tanggal Lahir</string>
+    <string name="seller">Penjual</string>
+    <string name="buyer">Pembeli</string>
+
+    <string name="please_wait">Silahkan tunggu...</string>
+    <string name="fetch_data_from_server">Mengambil data dari server..</string>
+    <string name="success">Berhasil..</string>
+    <string name="email_required">Email wajib diisi</string>
+    <string name="change_password">Ubah Password</string>
+    <string name="password_required">Password wajib diisi</string>
+    <string name="new_password_required">Password baru wajib diisi</string>
+    <string name="new_password_again_required">Ulangi password baru wajib diisi</string>
+    <string name="new_password_did_not_match">Password baru tidak sama</string>
+    <string name="new_password_is_same">Password baru tidak boleh sama dengan password lama</string>
+    <string name="wrong_username_password">Email atau sandi salah</string>
+
+    <!--permission-->
+    <string name="explain_permission">Aplikasi ini membutuhkan beberapa permintaan izin, Izinkan semua permintaan</string>
+    <string name="permission_not_granted">Permintaan tidak diizinkan</string>
+    <string name="all_permission_not_granted">Semua permintaan tidak diizinkan </string>
+    <string name="write_external_permission_not_granted">Tulis permintaan penyimpanan eksternal yang tidak diizinkan</string>
+    <string name="read_external_permission_not_granted">Baca permintaan penyimpanan eksternal yang tidak diizinkan</string>
+    <string name="camera_permission_not_granted">Permintaan kamera tidak diizinkan</string>
+    <string name="location_permission_not_granted">Permintaan akses lokasi tidak diizinkan</string>
+    <string name="auto_start_not_granted">Permintaan akses mulai otomatis tidak diizinkan</string>
+    <string name="all_permission_granted">Semua permintaan diizinkan</string>
+
+    <string name="error_msg">Sorry! Couldn\'t fetch movies.</string>
+    <string name="btn_retry">Retry</string>
+    <string name="error_msg_no_internet">Not connected to internet</string>
+    <string name="error_msg_timeout">The server took too long to respond</string>
+    <string name="error_msg_unknown">An unexpected error occurred</string>
+    <string name="tap_to_reload">Tap to reload</string>
+
+    <string name="no_data">No data available</string>
+    <string name="error">Error</string>
+
+    <string name="base64_info">data:image/jpeg;base64,</string>
+
+    <!--foto-->
+    <string name="load_from_uri">Load from Uri</string>
+    <string name="convert_uri_to_file">Convert Uri to file</string>
+    <string name="convert_uri_to_bitmap">Convert Uri to Bitmap</string>
+    <string name="label_loading">No image…</string>
+    <string name="save">Simpan</string>
+    <string name="cancel">Batal</string>
+    <string name="delete">Hapus</string>
+    <string name="choose_time">Pilih jam</string>
+    <string name="insert_date">Masukkan tanggal</string>
+    <string name="insert_new_data">Tambah data</string>
+
+    <string name="forgot_password">Lupa sandi</string>
+    <string name="dont_have_account">Belum punya akun? Silahkan daftar</string>
+    <string name="have_account">Sudah punya akun? Silahkan login</string>
+
+    <!--menu-->
+    <string name="home">Home</string>
+    <string name="profile">Profil</string>
+    <string name="notification">Notifikasi</string>
+    <string name="cart">Keranjang</string>
+    <string name="category">Kategori</string>
+    <string name="purchase">Pembelian</string>
+
+    <string name="sales">Penjualan</string>
+    <string name="product_list">Daftar Produk</string>
+    <string name="add_product">Tambah Produk</string>
+
+    <string name="exit_question">Anda yakin ingin keluar?</string>
+    <string name="delete_question">Anda yakin ingin menghapus?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="logout">Keluar</string>
+    <string name="more">Lainnya</string>
+    <string name="search">Cari product</string>
+
+    <string name="increment">+</string>
+    <string name="decrement">-</string>
+    <string name="display">0</string>
+
+    <string name="information">Informasi</string>
+    <string name="failed">Gagal</string>
+
+    <string name="name_required">Nama wajib diisi</string>
+    <string name="mobile_required">No. HP wajib diisi</string>
+    <string name="address_required">Alamat wajib diisi</string>
+    <string name="birthday_required">Tanggal lahir wajib diisi</string>
+    <string name="id_required">Foto KTP wajib diisi</string>
+    <string name="category_required">Kategori wajib dipilih</string>
+    <string name="product_name_required">Nama produk wajib diisi</string>
+    <string name="description_required">Keterangan wajib diisi</string>
+    <string name="price_required">Harga wajib diisi</string>
+    <string name="amount_required">Jumlah wajib diisi</string>
+    <string name="product_image_required">Foto produk wajib diisi</string>
+    <string name="amount">Jumlah</string>
+    <string name="add_to_cart">Tambahkan ke keranjang</string>
+    <string name="seller_name">Nama penjual</string>
+    <string name="stock">Stok</string>
+    <string name="action_denied">Aksi tidak dapat dilakukan</string>
+    <string name="number_order_required">Jumlah pesanan wajib diisi</string>
+    <string name="order_now">Pesan Sekarang</string>
+    <string name="total">Total pembayaran</string>
+    <string name="cod">COD</string>
+    <string name="transfer">Transfer</string>
+    <string name="other_address">Alamat lain</string>
+    <string name="current_address">Alamat saat ini</string>
+    <string name="payment_method">Metode pembayaran</string>
+    <string name="seller_does_not_same">Satu transaksi hanya untuk penjual yang sama</string>
+    <string name="sure_to_delete">Hapus item dari keranjang?</string>
+    <!--<string name="max_stock">Stok saat ini adalah</string>-->
+    <string name="max_stock">Stok %1$s saat ini adalah %2$s</string>
+    <string name="item_selected">Item sudah dipilih</string>
+    <string name="payment_method_required">Metode pembayaran wajib dipilih</string>
+    <string name="item_required">Item wajib dipilih</string>
+    <string name="detail_transaction">Lihat transaksi</string>
+    <string name="close">Tutup</string>
+    <string name="transcation_id">ID Transaksi</string>
+    <string name="status">Status</string>
+    <string name="confirm">Konfirmasi</string>
+    <string name="done_confirm">Konfirmasi selesai</string>
+    <string name="confirmed">Terkonfirmasi</string>
+    <string name="on_process_confirm">Konfirmasi diproses</string>
+    <string name="delivered_confirm">Konfirmasi terkirim</string>
+    <string name="proof_required">Foto bukti transfer wajib diisi</string>
+    <string name="rate_product">Beri penilaian product</string>
+    <string name="not_transaction_yet">Belum melakuan transaksi</string>
 </resources>

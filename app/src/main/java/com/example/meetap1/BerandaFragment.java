@@ -16,7 +16,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.meetap1.Adapter.TicketAdapter;
-import com.example.meetap1.Model.Ticket;
+import com.example.meetap1.Model.NewTicket;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -30,7 +30,7 @@ public class BerandaFragment extends Fragment {
     private RecyclerView rv;
     private TicketAdapter ticketAdapter;
     private Gson gson;
-    private List<Ticket> allList;
+    private List<NewTicket> allList;
 
     private static String TAG = BerandaFragment.class.getSimpleName();
 
@@ -61,7 +61,7 @@ public class BerandaFragment extends Fragment {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        List<Ticket> result = new ArrayList<>();
+                        List<NewTicket> result = new ArrayList<>();
                         try {
                             if (result != null)
                                 result.clear();
@@ -75,7 +75,7 @@ public class BerandaFragment extends Fragment {
 
                                 if (dataArr.length() > 0) {
                                     for (int i = 0; i < dataArr.length(); i++) {
-                                        Ticket ticket = gson.fromJson(dataArr.getJSONObject(i).toString(), Ticket.class);
+                                        NewTicket ticket = gson.fromJson(dataArr.getJSONObject(i).toString(), NewTicket.class);
                                         result.add(ticket);
                                         Log.e(TAG, "id" + ticket.getId());
 

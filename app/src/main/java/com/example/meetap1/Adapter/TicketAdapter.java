@@ -6,13 +6,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.meetap1.ComentarActivity;
 import com.example.meetap1.DetailActivity;
-import com.example.meetap1.Model.Ticket;
+import com.example.meetap1.Model.NewTicket;
+//import com.example.meetap1.Model.Ticket;
 import com.example.meetap1.R;
 
 import java.util.ArrayList;
@@ -21,15 +25,13 @@ import java.util.List;
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
 
     private Context context;
-    private List<Ticket> list;
+    private List<NewTicket> list;
     private static String TAG = TicketAdapter.class.getSimpleName();
 
     public TicketAdapter(Context context) {
         this.context = context;
         list = new ArrayList<>();
     }
-
-//    [{"img":"/assets/img_ticket/7/screenshot1.jpg","thumbnail":"1"},{"img":"/assets/img_ticket/7/screenshot2.jpg","thumbnail":"0"}]
 
 
     @NonNull
@@ -43,18 +45,42 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Ticket ticket = list.get(holder.getAdapterPosition());
+        final NewTicket ticket = list.get(holder.getAdapterPosition());
 
-        Log.e(TAG, "dataArr" + ticket.getContent());
+        Log.e(TAG, "dataArr" + ticket.getImagesFile());
+
 
         holder.tvTitleQuest.setText(ticket.getTitle());
         holder.tvcreate.setText(ticket.getCreated());
+        holder.tvNamaUser.setText(ticket.getUsername());
+        holder.tvTitleQuest.setText(ticket.getTitle());
+        holder.tvContent.setText(ticket.getContent());
+        holder.tvStatus.setText(ticket.getStatus());
+        holder.tvcreate.setText(ticket.getCreated());
+        if (ticket.getPhotoProfile() == null){
+            holder.imgUser.setImageResource(R.drawable.icon_profil);
+        } else {
+            Glide.with(context).load(ticket.getPhotoProfile()).into(holder.imgUser);
+        }
+
+        if (ticket.getImagesFile().equals("")){
+            holder.imgContent.setVisibility(View.INVISIBLE);
+        }else {
+            Glide.with(context).load(ticket.getImagesFile()).into(holder.imgContent);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("key_ticket", ticket);
+                Intent intent = new Intent(context, ComentarActivity.class);
+                intent.putExtra("key_ticket", ticket.getId());
+                intent.putExtra("judul", ticket.getTitle());
+                intent.putExtra("content", ticket.getContent());
+                intent.putExtra("status", ticket.getStatus());
+                intent.putExtra("created", ticket.getCreated());
+                intent.putExtra("namaUser", ticket.getUsername());
+                intent.putExtra("imageFile", ticket.getImagesFile());
+                intent.putExtra("imageUser", ticket.getPhotoProfile());
                 context.startActivity(intent);
 
             }
@@ -68,18 +94,18 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         return list.size();
     }
 
-    public void add(Ticket r) {
+    public void add(NewTicket r) {
         list.add(r);
         notifyItemInserted(list.size() - 1);
     }
 
-    public void addAll (List<Ticket> moveResults) {
-        for (Ticket result : moveResults) {
+    public void addAll (List<NewTicket> moveResults) {
+        for (NewTicket result : moveResults) {
             add(result);
         }
     }
 
-    private void remove(Ticket r) {
+    private void remove(NewTicket r) {
         int position = list.indexOf(r);
         if (position > -1) {
             list.remove(position);
@@ -104,7 +130,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         return getItemCount() == 0;
     }
 
-    private Ticket getItem(int position) {
+    private NewTicket getItem(int position) {
         if (list != null) {
             return  list.get(position);
         }
@@ -113,13 +139,23 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvTitleQuest;
-        public TextView tvcreate;
+        public TextView tvcreate, tvContent, tvStatus, tvNamaUser;
+        public ImageView imgUser, imgContent, imgStar, imgComent, imgShare;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitleQuest = itemView.findViewById(R.id.tvTitleQuest);
             tvcreate = itemView.findViewById(R.id.tvcreate);
+            tvContent = itemView.findViewById(R.id.tvContentTicket);
+            tvStatus = itemView.findViewById(R.id.statusTicket);
+            tvNamaUser = itemView.findViewById(R.id.tvNameUser);
+            imgUser = itemView.findViewById(R.id.imgUserTicket);
+            imgContent = itemView.findViewById(R.id.imgTicket);
+            imgStar = itemView.findViewById(R.id.imgStarTicket);
+            imgComent = itemView.findViewById(R.id.imgComentarTicket);
+            imgShare = itemView.findViewById(R.id.imgShareTicket);
+
         }
     }
 }
