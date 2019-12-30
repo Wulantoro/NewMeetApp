@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <stroke android:color="@color/green_A700" android:width="@dimen/_1mdp"/>-->
+<!--    <corners android:radius="@dimen/_11mdp"/>-->
+<!--    <padding android:top="@dimen/_3mdp" android:bottom="@dimen/_3mdp" android:left="@dimen/_3mdp" android:right="@dimen/_3mdp"/>-->
+<!--</shape>-->
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="#AED581"
+    tools:targetApi="lollipop">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/green_A700"></solid>
+            <stroke android:color="@color/green_A400"
+                android:width="2dp"></stroke>
+
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
+
+</ripple>
