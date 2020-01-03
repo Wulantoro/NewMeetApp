@@ -5,9 +5,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<!--    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -37,12 +37,20 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+            <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/AppBar">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiTitle1"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/AppBar"
             android:layout_marginHorizontal="@dimen/_10mdp"
             android:layout_marginTop="@dimen/_10mdp"
             android:hint="Question title"
@@ -178,7 +186,11 @@
             android:textSize="@dimen/_14font_mdp"
             android:textStyle="bold" />
 
+                </RelativeLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
         </RelativeLayout>
 
-    </androidx.core.widget.NestedScrollView>
+<!--    </androidx.core.widget.NestedScrollView>-->
 </RelativeLayout>
