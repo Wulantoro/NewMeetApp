@@ -116,7 +116,8 @@ public class AskFragment extends Fragment {
         imgTivket = rootView.findViewById(R.id.imgTivket);
 
         pref = this.getActivity().getSharedPreferences("id",getActivity().MODE_PRIVATE);
-        idUser = pref.getString("IdUser3", null);
+//        idUser = pref.getString("IdUser3", null);
+        idUser = pref.getString("IdUser", null);
 
 
         converterRadioGroup = rootView.findViewById(R.id.radio_group);
@@ -149,13 +150,12 @@ public class AskFragment extends Fragment {
         addGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFile();
+//                openFile();
+                pickImageFromSource(Sources.GALLERY);
             }
         });
 
         loadCat();
-
-        loadUser();
 
         return rootView;
     }
@@ -380,9 +380,6 @@ public class AskFragment extends Fragment {
 
             }
         });
-
-
-
     }
 
 
@@ -399,57 +396,6 @@ public class AskFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-
-    public void loadUser() {
-
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/tampilProfile")
-                .addBodyParameter("id", "1")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        List<User> result = new ArrayList<>();
-                        try {
-                            if (result != null)
-                                result.clear();
-
-                            Log.e("tampil user", response.toString(1));
-
-                            String message = response.getString("message");
-
-                            if (message.equals("Profile Ditemuka")) {
-                                String records = response.getString("data");
-
-                                JSONArray dataArr = new JSONArray(records);
-                                tagCategory();
-
-                                if (dataArr.length() > 0) {
-                                    for (int i = 0; i < dataArr.length(); i++) {
-                                        User user = gson.fromJson(dataArr.getJSONObject(i).toString(), User.class);
-                                        result.add(user);
-//                                        tviduser.setText(String.valueOf(user.getUser_id()));
-                                    }
-                                }
-
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-
-                    }
-                });
-    }
-
-
-//    [{"img":"/assets/img_ticket/7/screenshot1.jpg","thumbnail":"1"},{"img":"/assets/img_ticket/7/screenshot2.jpg","thumbnail":"0"}]
-
 
     public void publishTicket() {
         JSONObject jsonObject = new JSONObject();
@@ -469,7 +415,7 @@ public class AskFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e(TAG, "user_id" + tviduser.getText().toString());
+//        Log.e(TAG, "user_id" + tviduser.getText().toString());
         Log.e(TAG, "title" + tiTitle.getText().toString());
         AndroidNetworking.post("http://ask.meetap.id/api/ticket/insertTicket")
                 .addJSONObjectBody(jsonObject)
