@@ -316,6 +316,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btnSmpProf"
+                android:textColor="@color/white"
                 android:text="email"/>
 
             <TextView
@@ -325,6 +326,7 @@
                 android:layout_toRightOf="@id/tvemail"
                 android:layout_marginLeft="5dp"
                 android:layout_below="@id/btnSmpProf"
+                android:textColor="@color/white"
                 android:text="password"/>
 
             <TextView
@@ -333,6 +335,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tvpassword"
                 android:text="id user"
+                android:textColor="@color/white"
                 android:layout_below="@id/btnSmpProf"
                 android:layout_marginLeft="5dp"/>
 
@@ -342,6 +345,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tviduser1"
                 android:text="kota"
+                android:textColor="@color/white"
                 android:layout_below="@id/btnSmpProf"
                 android:layout_marginLeft="5dp"/>
 

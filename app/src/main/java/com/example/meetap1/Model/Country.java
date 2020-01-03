@@ -44,4 +44,8 @@ public class Country implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+    public String toString() {
+        return this.nicename;
+    }
 }

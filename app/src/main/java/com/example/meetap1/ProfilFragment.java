@@ -105,6 +105,8 @@ public class ProfilFragment extends Fragment {
                                 Username.setText(jsonObject.getString("fullname"));
                                 Email.setText(jsonObject.getString("email"));
                                 Ulangtahun.setText(jsonObject.getString("birthdate"));
+                                Negara.setText(jsonObject.getString("country"));
+                                NoTelp.setText(jsonObject.getString("handphone_number"));
                                 Glide.with(getContext())
                                         .load(jsonObject.getString("photo_file"))
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
