@@ -156,7 +156,7 @@ public class MemberFragment extends Fragment {
         if (memberAdapter != null){
             memberAdapter.clerAll();
 
-            AndroidNetworking.post("http://ask.meetap.id/api/profile/tampilOtherProfile")
+            AndroidNetworking.post("http://meetap.tech/api/profile/tampilOtherProfile")
                     .addBodyParameter("my_id", id)
                     .setPriority(Priority.MEDIUM)
                     .build()

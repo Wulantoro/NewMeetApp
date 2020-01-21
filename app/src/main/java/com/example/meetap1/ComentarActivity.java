@@ -164,7 +164,7 @@ public class ComentarActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.e(TAG,"Contentt: "+etInputComent);
-        AndroidNetworking.post("http://ask.meetap.id/api/ticket/insertKomentar")
+        AndroidNetworking.post("http://meetap.tech/api/ticket/insertKomentar")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -199,7 +199,7 @@ public class ComentarActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AndroidNetworking.post("http://ask.meetap.id/api/ticket/tampilKomentar")
+        AndroidNetworking.post("http://meetap.tech/api/ticket/tampilKomentar")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()

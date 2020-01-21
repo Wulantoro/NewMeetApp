@@ -417,7 +417,7 @@ public class AskFragment extends Fragment {
         }
 //        Log.e(TAG, "user_id" + tviduser.getText().toString());
         Log.e(TAG, "title" + tiTitle.getText().toString());
-        AndroidNetworking.post("http://ask.meetap.id/api/ticket/insertTicket")
+        AndroidNetworking.post("http://meetap.tech/api/ticket/insertTicket")
                 .addJSONObjectBody(jsonObject)
 //                .addBodyParameter("title", tiTitle.getText().toString())
 //                .addBodyParameter("content", tiBody.getText().toString())

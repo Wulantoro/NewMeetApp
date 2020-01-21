@@ -212,7 +212,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AndroidNetworking.post("http://ask.meetap.id/api/auth/login/")
+        AndroidNetworking.post("http://meetap.tech/api/auth/login/")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()

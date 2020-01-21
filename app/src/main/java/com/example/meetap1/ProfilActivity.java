@@ -391,7 +391,7 @@ public class ProfilActivity extends AppCompatActivity {
 
 
     private void listProvince() {
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/tampilProvince")
+        AndroidNetworking.post("http://meetap.tech/api/profile/tampilProvince")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -435,7 +435,7 @@ public class ProfilActivity extends AppCompatActivity {
 
     private void listCountry() {
 
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/tampilCountry")
+        AndroidNetworking.post("http://meetap.tech/api/profile/tampilCountry")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -635,7 +635,7 @@ public class ProfilActivity extends AppCompatActivity {
         }
 
 
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/updateProfile?id")
+        AndroidNetworking.post("http://meetap.tech/api/profile/updateProfile?id")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -744,7 +744,7 @@ public class ProfilActivity extends AppCompatActivity {
     }
 
     private void listKota(String prop) {
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/tampilCity")
+        AndroidNetworking.post("http://meetap.tech/api/profile/tampilCity")
                 .addBodyParameter("province_name", prop)
 //                .addBodyParameter("province_name", "Aceh")
                 .setPriority(Priority.MEDIUM)

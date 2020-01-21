@@ -86,7 +86,7 @@ public class ProfilFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        AndroidNetworking.post("http://ask.meetap.id/api/profile/tampilProfile")
+        AndroidNetworking.post("http://meetap.tech/api/profile/tampilProfile")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()
