@@ -182,7 +182,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         waitingDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Gagal Registrasi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "aneeRORO : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
