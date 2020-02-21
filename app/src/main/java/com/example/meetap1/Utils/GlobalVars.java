@@ -9,7 +9,7 @@ import net.rehacktive.waspdb.WaspHash;
 import java.io.File;
 
 public class GlobalVars {
-    public static final String BASE_IP = "http://ask.meetap.id/api/";
+    public static final String BASE_IP = "http://skripsiku.my.id/meetap/api/";
     public static final File BASE_DIR = Environment.getExternalStorageDirectory();
     public static final String EXTERNAL_DIR_FILES = "/meetap_apps";
     public static final String PICTURES_DIR_FILES = "/Pictures";

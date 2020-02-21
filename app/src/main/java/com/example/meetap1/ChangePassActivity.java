@@ -177,7 +177,7 @@ public class ChangePassActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AndroidNetworking.post("http://meetap.tech/api/profile/updatePassword?id/")
+        AndroidNetworking.post("http://skripsiku.my.id/meetap/api/profile/updatePassword?id/")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()

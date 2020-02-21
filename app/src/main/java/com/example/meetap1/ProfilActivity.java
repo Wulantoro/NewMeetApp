@@ -391,7 +391,7 @@ public class ProfilActivity extends AppCompatActivity {
 
 
     private void listProvince() {
-        AndroidNetworking.post("http://meetap.tech/api/profile/tampilProvince")
+        AndroidNetworking.post("http://skripsiku.my.id/meetap/api/profile/tampilProvince")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -421,13 +421,13 @@ public class ProfilActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONException "+e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "JSONException "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(getApplicationContext(), "ANError "+anError, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "ANError "+anError.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -435,7 +435,7 @@ public class ProfilActivity extends AppCompatActivity {
 
     private void listCountry() {
 
-        AndroidNetworking.post("http://meetap.tech/api/profile/tampilCountry")
+        AndroidNetworking.post("http://skripsiku.my.id/meetap/api/profile/tampilCountry")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -464,12 +464,15 @@ public class ProfilActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "JSONExceptionCountry "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
                         }
 
                     }
 
                     @Override
                     public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(), "ANErrorCountry "+anError.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -635,7 +638,7 @@ public class ProfilActivity extends AppCompatActivity {
         }
 
 
-        AndroidNetworking.post("http://meetap.tech/api/profile/updateProfile?id")
+        AndroidNetworking.post("http://skripsiku.my.id/meetap/api/profile/updateProfile?id")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -646,18 +649,20 @@ public class ProfilActivity extends AppCompatActivity {
                             String message = response.getString("message");
                             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                             RegFirebase(emailUser,newPass);
+                            Log.e(TAG, "eMail: "+emailUser);
+                            Log.e(TAG, "ePass: "+newPass);
 
 
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "JSONExceptionsUpdateProfil " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(getApplicationContext(), "Gagal menambah data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal menambah data "+anError.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -744,7 +749,7 @@ public class ProfilActivity extends AppCompatActivity {
     }
 
     private void listKota(String prop) {
-        AndroidNetworking.post("http://meetap.tech/api/profile/tampilCity")
+        AndroidNetworking.post("http://skripsiku.my.id/meetap/api/profile/tampilCity")
                 .addBodyParameter("province_name", prop)
 //                .addBodyParameter("province_name", "Aceh")
                 .setPriority(Priority.MEDIUM)
@@ -780,7 +785,7 @@ public class ProfilActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONException" + e, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "JSONExceptionCity " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
 

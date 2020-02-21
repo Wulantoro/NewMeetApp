@@ -91,6 +91,7 @@ public class MemberFragment extends Fragment {
 //        String args = getArguments().getString("key");
 //        Log.e(TAG,"iDuSER : "+args);
 //        Toast.makeText(getApplicationContext(), args, Toast.LENGTH_SHORT).show();
+
         SharedPreferences prf = this.getActivity().getSharedPreferences("id", getContext().MODE_PRIVATE);
         Id = prf.getString("IdUser", null);
 
@@ -156,7 +157,7 @@ public class MemberFragment extends Fragment {
         if (memberAdapter != null){
             memberAdapter.clerAll();
 
-            AndroidNetworking.post("http://meetap.tech/api/profile/tampilOtherProfile")
+            AndroidNetworking.post("http://skripsiku.my.id/meetap/api/profile/tampilOtherProfile")
                     .addBodyParameter("my_id", id)
                     .setPriority(Priority.MEDIUM)
                     .build()

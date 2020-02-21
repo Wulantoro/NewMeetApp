@@ -144,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        AndroidNetworking.post("http://meetap.tech/api/auth/register")
+        AndroidNetworking.post("http://skripsiku.my.id/meetap/api/auth/register")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()

@@ -55,7 +55,7 @@ public class BerandaFragment extends Fragment {
         if (ticketAdapter != null)
             ticketAdapter.clerAll();
 
-        AndroidNetworking.post("http://meetap.tech/api/ticket/tampilTicket")
+        AndroidNetworking.post("http://skripsiku.my.id/meetap/api/ticket/tampilTicket")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
